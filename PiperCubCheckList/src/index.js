@@ -16,24 +16,28 @@ var states = {
 };
 
 
-// Questions
-var nodes = [{ "node": 1, "message": "Do you like working with people", "yes": 2, "no": 3 },
-             { "node": 2, "message": "Do you like caring for others", "yes": 4, "no": 5 },
-             { "node": 3, "message": "Would you like to work during the day", "yes": 6, "no": 7 },
-             { "node": 4, "message": "Can you stand the sight of blood", "yes": 8, "no": 9 },
-             { "node": 5, "message": "Is money the most important thing in your life", "yes": 10, "no": 11 },
-             { "node": 6, "message": "Do you want to work with animals", "yes": 12, "no": 13 },
-             { "node": 7, "message": "Are you active", "yes": 14, "no": 15 },
+// Happy Path
+var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes": 2, "no": 10 },
+             { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 11 },
+             { "node": 3, "message": "Turn the carb heat off",              "yes": 4, "no": 12 },
+             { "node": 4, "message": "Open the Throttle just a little bit", "yes": 5, "no": 13 },
+             { "node": 5, "message": "Prime the fuels system",              "yes": 6, "no": 14 },
+             { "node": 6, "message": "Release the brakes",                  "yes": 7, "no": 15 },
+             { "node": 7, "message": "Set the Magneto Switch to On",        "yes": 8, "no": 16 },
+             { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 17 },
 
-// Answers & descriptions
-             { "node": 8, "message": "Doctor", "yes": 0, "no": 0, "description": "A physician or medical doctor is a professional who practices medicine." },
-             { "node": 9, "message": "Teacher", "yes": 0, "no": 0, "description": "In education, teachers facilitate student learning, often in a school or academy or perhaps in another environment such as outdoors."},
-             { "node": 10, "message": "Sales person", "yes": 0, "no": 0 , "description": "A salesman is someone who works in sales, with the main function of selling products or services to others."},
-             { "node": 11, "message": "Artist", "yes": 0, "no": 0 , "description": "An artist is a person engaged in one or more of any of a broad spectrum of activities related to creating art, practicing the arts, and, or demonstrating an art."},
-             { "node": 12, "message": "Zookeeper", "yes": 0, "no": 0 , "description": "A zookeeper is a person who manages zoo animals that are kept in captivity for conservation or to be displayed to the public, and are usually responsible for the feeding and daily care of the animals."},
-             { "node": 13, "message": "Software engineer", "yes": 0, "no": 0 , "description": "A software engineer is a person who applies the principles of software engineering to the design, development, maintenance, testing, and evaluation of the software and systems that make computers or anything containing software work."},
-             { "node": 14, "message": "Security Guard", "yes": 0, "no": 0 , "description": "A security guard is a private person who is paid to protect an organization's assets from various hazards such as criminal activity, by utilizing preventative measures. "},
-             { "node": 15, "message": "Lighthouse keeper", "yes": 0, "no": 0 , "description": "A lighthouse keeper is the person responsible for tending and caring for a lighthouse, particularly the light and lens in the days when oil lamps and clockwork mechanisms were used."},
+
+
+// Where's that? Questions
+             { "node": 10, "message": "the small red knob on the left, below the window.",   "yes": 2, "ok": 2 , "description": "Push it in, or click with mouse."},
+             { "node": 11, "message": "the small red knob on the right, below the window.",  "yes": 3, "ok": 3 , "description": "Push it in, or hit control shift F3"},
+             { "node": 12, "message": "the small black knob on the right, below the window", "yes": 4, "ok": 4 , "description": "Push it in, or hit the H key"},
+             { "node": 13, "message": "the small knob on the left window sill",              "yes": 5, "ok": 5 , "description": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust."},
+             { "node": 14, "message": "kind of fake, just move on.",                         "yes": 6, "ok": 6 , "description": "Nothing to click here, move along"},
+             { "node": 15, "message": "kind of fake, just hit the period key",               "yes": 7, "ok": 7 , "description": "hit the period key"},
+             { "node": 16, "message": "the big red lever above your left shoulder",          "yes": 8, "ok": 8 , "description": "Turn it to both, or hit the M and plus keys until the prop starts spinning."},
+             { "node": 17, "message": "the bottom half of the rightmost guage", "yes": 9, "ok": 9 , "description": "It should be at least halftway between the first two tick marks."},
+             { "node": 9, "message": "Happy Flying", "yes": 0, "no": 0 },
 ];
 
 // this is used for keep track of visted nodes when we test for loops in the tree
@@ -42,25 +46,25 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welcome to decision tree, are you ready to play?";
+var welcomeMessage = "Welcome aboard your Piper Cub.  Ready to fly?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
-var repeatWelcomeMessage = "Say yes to start the game or no to quit.";
+var repeatWelcomeMessage = "Say yes to start the checklist or no to quit.";
 
 // this is the message that is repeated if Alexa does not hear/understand the reponse to the welcome message
 var promptToStartMessage = "Say yes to continue, or no to end the game.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
-var promptToSayYesNo = "Say yes or no to answer the question.";
+var promptToSayYesNo = "Say got it or where's that to answer the question.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
-var decisionMessage = "I think you would make a good";
+var decisionMessage = "It's";
 
 // This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Say 'tell me more' to hear a short description for this profession, or do you want to play again?";
+var playAgainMessage = "Say 'how do I do that' to hear a short description for this profession, or do you want to play again?";
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "I will ask you some questions that will identify what you would be best at. Want to start now?";
+var helpMessage = "I will guide you through the engine start checklsit. Want to start now?";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "Ok, see you next time!";
@@ -117,7 +121,7 @@ var startGameHandlers = Alexa.CreateStateHandler(states.STARTMODE, {
         if( loopFound === true)
         {
             // comment out this line if you know that there are no loops in your decision tree
-             this.emit(':tell', loopsDetectedMessage);
+    //         this.emit(':tell', loopsDetectedMessage);
         }
         // ---------------------------------------------------------------
 

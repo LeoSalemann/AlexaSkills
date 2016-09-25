@@ -11,3 +11,8 @@ AMAZON.StartOverIntent start over
 AMAZON.StartOverIntent restart
 AMAZON.StartOverIntent start again
 AMAZON.StartOverIntent play again
+AMAZON.YesIntent got it
+AMAZON.YesIntent whats next
+AMAZON.NoIntent wheres that
+AMAZON.NoIntent whats that
+AMAZON.NoIntent how do I do that
