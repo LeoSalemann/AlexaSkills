@@ -29,14 +29,14 @@ var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes
 
 
 // Where's that? Questions
-             { "node": 10, "message": "the small red knob on the left, below the window.",   "yes": 2, "ok": 2 , "description": "Push it in, or click with mouse."},
-             { "node": 11, "message": "the small red knob on the right, below the window.",  "yes": 3, "ok": 3 , "description": "Push it in, or hit control shift F3"},
-             { "node": 12, "message": "the small black knob on the right, below the window", "yes": 4, "ok": 4 , "description": "Push it in, or hit the H key"},
-             { "node": 13, "message": "the small knob on the left window sill",              "yes": 5, "ok": 5 , "description": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust."},
-             { "node": 14, "message": "kind of fake, just move on.",                         "yes": 6, "ok": 6 , "description": "Nothing to click here, move along"},
-             { "node": 15, "message": "kind of fake, just hit the period key",               "yes": 7, "ok": 7 , "description": "hit the period key"},
-             { "node": 16, "message": "the big red lever above your left shoulder",          "yes": 8, "ok": 8 , "description": "Turn it to both, or hit the M and plus keys until the prop starts spinning."},
-             { "node": 17, "message": "the bottom half of the rightmost guage", "yes": 9, "ok": 9 , "description": "It should be at least halftway between the first two tick marks."},
+             { "node": 10, "message": "the small red knob on the left, below the window.",   "yes": 2, "no": 2 , "description": "Push it in, or click with mouse."},
+             { "node": 11, "message": "the small red knob on the right, below the window.",  "yes": 3, "no": 3 , "description": "Push it in, or hit control shift F3"},
+             { "node": 12, "message": "the small black knob on the right, below the window", "yes": 4, "no": 4 , "description": "Push it in, or hit the H key"},
+             { "node": 13, "message": "the small knob on the left window sill",              "yes": 5, "no": 5 , "description": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust."},
+             { "node": 14, "message": "kind of fake, just move on.",                         "yes": 6, "no": 6 , "description": "Nothing to click here, move along"},
+             { "node": 15, "message": "kind of fake, just hit the period key",               "yes": 7, "no": 7 , "description": "hit the period key"},
+             { "node": 16, "message": "the big red lever above your left shoulder",          "yes": 8, "no": 8 , "description": "Turn it to both, or hit the M and plus keys until the prop starts spinning."},
+             { "node": 17, "message": "the bottom half of the rightmost guage", "yes": 9, "no": 9 , "description": "It should be at least halftway between the first two tick marks."},
              { "node": 9, "message": "Happy Flying", "yes": 0, "no": 0 },
 ];
 
@@ -302,7 +302,8 @@ var helper = {
 
     // checks to see if this node is an choice node or a decision node
     isAnswerNode: function (nodeId) {
-
+      return nodeId > 8;
+      /*
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
                 if (nodes[i].yes === 0 && nodes[i].no === 0) {
@@ -311,6 +312,7 @@ var helper = {
             }
         }
         return false;
+        */
     },
 
     // gets the next node to traverse to based on the yes no response
