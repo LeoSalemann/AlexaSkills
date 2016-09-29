@@ -16,6 +16,7 @@ var states = {
 };
 
 
+var LAST_HAPPY_PATH_NODE = 8;
 // Happy Path
 var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes": 2, "no": 10 },
              { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 11 },
@@ -197,12 +198,14 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
  'AMAZON.YesIntent': function () {
         // Handle Yes intent.
         // reset the game state to start mode
-        this.handler.state = states.STARTMODE;
-        this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
+//        this.handler.state = states.STARTMODE;
+//        this.emit(':ask', welcomeMessage, repeatWelcomeMessage);
+        this.handler.state = states.ASKMODE;
     },
     'AMAZON.NoIntent': function () {
         // Handle No intent.
-        this.emit(':tell', goodbyeMessage);
+//        this.emit(':tell', goodbyeMessage);
+        this.handler.state = states.ASKMODE;
     },
     'AMAZON.HelpIntent': function () {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
@@ -302,7 +305,7 @@ var helper = {
 
     // checks to see if this node is an choice node or a decision node
     isAnswerNode: function (nodeId) {
-      return nodeId > 8;
+      return nodeId > LAST_HAPPY_PATH_NODE;
       /*
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
