@@ -18,27 +18,38 @@ var states = {
 
 var LAST_HAPPY_PATH_NODE = 8;
 // Happy Path
-var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes": 2, "no": 10 },
-             { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 11 },
-             { "node": 3, "message": "Turn the carb heat off",              "yes": 4, "no": 12 },
-             { "node": 4, "message": "Open the Throttle just a little bit", "yes": 5, "no": 13 },
-             { "node": 5, "message": "Prime the fuels system",              "yes": 6, "no": 14 },
-             { "node": 6, "message": "Release the brakes",                  "yes": 7, "no": 15 },
-             { "node": 7, "message": "Set the Magneto Switch to On",        "yes": 8, "no": 16 },
-             { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 17 },
-
-
+var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes": 2, "no": 10 }, // fuel valve
+             { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 11 }, // mixture
+             { "node": 3, "message": "Turn the carb heat off",              "yes": 4, "no": 12 }, // carb heat
+             { "node": 4, "message": "Open the Throttle just a little bit", "yes": 5, "no": 13 }, // throttle
+             { "node": 5, "message": "Prime the fuels system",              "yes": 6, "no": 14 }, // prime
+             { "node": 6, "message": "Release the brakes",                  "yes": 7, "no": 15 }, // brakes
+             { "node": 7, "message": "Set the Magneto Switch to On",        "yes": 8, "no": 16 }, // magneto
+             { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 100, "no": 17 }, //oil pressue
 
 // Where's that? Questions
-             { "node": 10, "message": "the small red knob on the left, below the window.",   "yes": 2, "no": 2 , "description": "Push it in, or click with mouse."},
-             { "node": 11, "message": "the small red knob on the right, below the window.",  "yes": 3, "no": 3 , "description": "Push it in, or hit control shift F3"},
-             { "node": 12, "message": "the small black knob on the right, below the window", "yes": 4, "no": 4 , "description": "Push it in, or hit the H key"},
-             { "node": 13, "message": "the small knob on the left window sill",              "yes": 5, "no": 5 , "description": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust."},
-             { "node": 14, "message": "kind of fake, just move on.",                         "yes": 6, "no": 6 , "description": "Nothing to click here, move along"},
-             { "node": 15, "message": "kind of fake, just hit the period key",               "yes": 7, "no": 7 , "description": "hit the period key"},
-             { "node": 16, "message": "the big red lever above your left shoulder",          "yes": 8, "no": 8 , "description": "Turn it to both, or hit the M and plus keys until the prop starts spinning."},
-             { "node": 17, "message": "the bottom half of the rightmost guage", "yes": 9, "no": 9 , "description": "It should be at least halftway between the first two tick marks."},
-             { "node": 9, "message": "Happy Flying", "yes": 0, "no": 0 },
+             { "node": 10, "message": "It's the small red knob on the left, below the window.",   "yes": 2, "no": 18 }, // fuel valve
+             { "node": 11, "message": "It's the small red knob on the right, below the window.",  "yes": 3, "no": 19 }, // mixture
+             { "node": 12, "message": "It's the small black knob on the right, below the window", "yes": 4, "no": 20 }, // carb heat
+             { "node": 13, "message": "It's the small knob on the left window sill",              "yes": 5, "no": 21 }, // throttle
+             { "node": 14, "message": "It's kind of fake, just move on.",                         "yes": 6, "no": 22 }, // prime
+             { "node": 15, "message": "It's kind of fake, just hit the period key",               "yes": 7, "no": 23 }, // brakes
+             { "node": 16, "message": "It's the big red lever above your left shoulder",          "yes": 8, "no": 24 }, // magneto
+             { "node": 17, "message": "It's the bottom half of the rightmost guage",              "yes": 100, "no": 25 }, //oil pressue
+
+// How do I do that? Questions
+            { "node": 18, "message": "Push it in, or click with mouse.",     "yes": 2, "no": 2 }, // fuel valve
+            { "node": 19, "message": "Push it in, or hit control shift F3",  "yes": 3, "no": 3 }, // mixture
+            { "node": 20, "message": "Push it in, or hit the H key",         "yes": 4, "no": 4 }, // carb heat
+            { "node": 21, "message": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust.", "yes": 5, "no": 5 }, // throttle
+            { "node": 22, "message": "Nothing to click here, move along",    "yes": 6, "no": 6 }, // prime
+            { "node": 23, "message": "hit the period key",                   "yes": 7, "no": 7 }, // brakes
+            { "node": 24, "message": "Turn it to both, or hit the M and plus keys until the prop starts spinning.", "yes": 8, "no": 8 },     // magneto
+            { "node": 25, "message": "It should be at least halftway between the first two tick marks.",            "yes": 100, "no": 100 }, // oil pressue
+
+// Checklist complete
+            { "node": 100, "message": "Happy Flying", "yes": 0, "no": 0 },
+
 ];
 
 // this is used for keep track of visted nodes when we test for loops in the tree
@@ -305,7 +316,8 @@ var helper = {
 
     // checks to see if this node is an choice node or a decision node
     isAnswerNode: function (nodeId) {
-      return nodeId > LAST_HAPPY_PATH_NODE;
+      return false;
+      // return nodeId > LAST_HAPPY_PATH_NODE;
       /*
         for (var i = 0; i < nodes.length; i++) {
             if (nodes[i].node == nodeId) {
