@@ -18,34 +18,34 @@ var states = {
 
 var LAST_HAPPY_PATH_NODE = 8;
 // Happy Path
-var nodes = [{ "node": 1, "message": "Turn on the fuel valve",              "yes": 2, "no": 10 }, // fuel valve
-             { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 11 }, // mixture
-             { "node": 3, "message": "Turn the carb heat off",              "yes": 4, "no": 12 }, // carb heat
-             { "node": 4, "message": "Open the Throttle just a little bit", "yes": 5, "no": 13 }, // throttle
-             { "node": 5, "message": "Prime the fuels system",              "yes": 6, "no": 14 }, // prime
-             { "node": 6, "message": "Release the brakes",                  "yes": 7, "no": 15 }, // brakes
-             { "node": 7, "message": "Set the Magneto Switch to On",        "yes": 8, "no": 16 }, // magneto
-             { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 100, "no": 17 }, //oil pressue
+var nodes = [{ "node": 1, "message": "Turn on the fuel valve",                "yes": 2, "no": 10, "how": 18 }, // fuel valve
+             { "node": 2, "message": "Set the fuel mixture to Rich",          "yes": 3, "no": 11, "how": 19 }, // mixture
+             { "node": 3, "message": "Turn the carb heat off",                "yes": 4, "no": 12, "how": 20 }, // carb heat
+             { "node": 4, "message": "Open the Throttle just a little bit",   "yes": 5, "no": 13, "how": 21 }, // throttle
+             { "node": 5, "message": "Prime the fuel system",                "yes": 6, "no": 14, "how": 22 }, // prime
+             { "node": 6, "message": "Release the brakes",                    "yes": 7, "no": 15, "how": 23 }, // brakes
+             { "node": 7, "message": "Set the Magneto Switch to On",          "yes": 8, "no": 16, "how": 24 }, // magneto
+             { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 100, "no": 17, "how": 25 }, //oil pressue
 
 // Where's that? Questions
-             { "node": 10, "message": "It's the small red knob on the left, below the window.",   "yes": 2, "no": 18 }, // fuel valve
-             { "node": 11, "message": "It's the small red knob on the right, below the window.",  "yes": 3, "no": 19 }, // mixture
-             { "node": 12, "message": "It's the small black knob on the right, below the window", "yes": 4, "no": 20 }, // carb heat
-             { "node": 13, "message": "It's the small knob on the left window sill",              "yes": 5, "no": 21 }, // throttle
-             { "node": 14, "message": "It's kind of fake, just move on.",                         "yes": 6, "no": 22 }, // prime
-             { "node": 15, "message": "It's kind of fake, just hit the period key",               "yes": 7, "no": 23 }, // brakes
-             { "node": 16, "message": "It's the big red lever above your left shoulder",          "yes": 8, "no": 24 }, // magneto
-             { "node": 17, "message": "It's the bottom half of the rightmost guage",              "yes": 100, "no": 25 }, //oil pressue
+             { "node": 10, "message": "It's the small red knob on the left, below the window.",   "yes": 2, "how": 18 }, // fuel valve
+             { "node": 11, "message": "It's the small red knob on the right, below the window.",  "yes": 3, "how": 19 }, // mixture
+             { "node": 12, "message": "It's the small black knob on the right, below the window", "yes": 4, "how": 20 }, // carb heat
+             { "node": 13, "message": "It's the small knob on the left window sill",              "yes": 5, "how": 21 }, // throttle
+             { "node": 14, "message": "It's kind of fake, just move on.",                         "yes": 6, "how": 22 }, // prime
+             { "node": 15, "message": "It's kind of fake, just hit the period key",               "yes": 7, "how": 23 }, // brakes
+             { "node": 16, "message": "It's the big red lever above your left shoulder",          "yes": 8, "how": 24 }, // magneto
+             { "node": 17, "message": "It's the bottom half of the rightmost guage",              "yes": 100, "how": 25 }, //oil pressue
 
 // How do I do that? Questions
-            { "node": 18, "message": "Push it in, or click with mouse.",     "yes": 2, "no": 2 }, // fuel valve
-            { "node": 19, "message": "Push it in, or hit control shift F3",  "yes": 3, "no": 3 }, // mixture
-            { "node": 20, "message": "Push it in, or hit the H key",         "yes": 4, "no": 4 }, // carb heat
-            { "node": 21, "message": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust.", "yes": 5, "no": 5 }, // throttle
-            { "node": 22, "message": "Nothing to click here, move along",    "yes": 6, "no": 6 }, // prime
-            { "node": 23, "message": "hit the period key",                   "yes": 7, "no": 7 }, // brakes
-            { "node": 24, "message": "Turn it to both, or hit the M and plus keys until the prop starts spinning.", "yes": 8, "no": 8 },     // magneto
-            { "node": 25, "message": "It should be at least halftway between the first two tick marks.",            "yes": 100, "no": 100 }, // oil pressue
+            { "node": 18, "message": "Push it in, or click with mouse.",     "yes": 2, "no": 10 }, // fuel valve
+            { "node": 19, "message": "Push it in, or hit control shift F3",  "yes": 3, "no": 11 }, // mixture
+            { "node": 20, "message": "Push it in, or hit the H key",         "yes": 4, "no": 12 }, // carb heat
+            { "node": 21, "message": "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust.", "yes": 5, "no": 13 }, // throttle
+            { "node": 22, "message": "Nothing to click here, move along",    "yes": 6, "no": 14 }, // prime
+            { "node": 23, "message": "hit the period key",                   "yes": 7, "no": 15 }, // brakes
+            { "node": 24, "message": "Turn it to both, or hit the M and plus keys until the prop starts spinning.", "yes": 8, "no": 16 },     // magneto
+            { "node": 25, "message": "It should be at least halftway between the first two tick marks.",            "yes": 100, "no": 25 }, // oil pressue
 
 // Checklist complete
             { "node": 100, "message": "Happy Flying", "yes": 0, "no": 0 },
@@ -184,6 +184,10 @@ var askQuestionHandlers = Alexa.CreateStateHandler(states.ASKMODE, {
         // Handle No intent.
          helper.yesOrNo(this, 'no');
     },
+    'HowIntent': function () {
+        // Handle No intent.
+         helper.yesOrNo(this, 'how');
+    },
     'AMAZON.HelpIntent': function () {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
     },
@@ -236,7 +240,10 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTIONMODE, {
         //var reply = this.event.request.intent.slots.Description.value;
         //console.log('HEARD: ' + reply);
         helper.giveDescription(this);
-      },
+    },
+    'HowIntent': function () {
+        this.handler.state = states.ASKMODE;
+    },
 
     'Unhandled': function () {
         this.emit(':ask', promptToSayYesNo, promptToSayYesNo);
@@ -303,6 +310,29 @@ var helper = {
         return descriptionNotFoundMessage + nodeId;
     },
 
+    getHowToForNode: function (nodeId) {
+        // about the same as yesOrNo, but it's How instead of No
+        // set the current node to next node we want to go to
+        // this is a question node so we need to see if the user picked yes or no
+        var nextNodeId = helper.getNextNode(context.attributes.currentNode, reply);
+
+        // error in node data
+        if (nextNodeId == -1)
+        {
+            context.handler.state = states.STARTMODE;
+
+            // the current node was not found in the nodes array
+            // this is due to the current node in the nodes array having a yes / no node id for a node that does not exist
+            context.emit(':tell', nodeNotFoundMessage, nodeNotFoundMessage);
+        }
+
+        // get the speech for the child node
+        var message = helper.getSpeechForNode(nextNodeId);
+        context.attributes.currentNode = nextNodeId;
+
+        context.emit(':ask', message, message);
+    },
+
     // returns the speech for the provided node id
     getSpeechForNode: function (nodeId) {
 
@@ -336,6 +366,9 @@ var helper = {
             if (nodes[i].node == nodeId) {
                 if (yesNo == "yes") {
                     return nodes[i].yes;
+                }
+                if (yesNo == "how") {
+                    return nodes[i].how;
                 }
                 return nodes[i].no;
             }

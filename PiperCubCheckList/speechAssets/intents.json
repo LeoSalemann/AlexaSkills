@@ -24,5 +24,12 @@
           "name": "Description",
           "type": "descriptionType"
         }]
+	}, {
+    "intent": "HowIntent",
+	  "slots": [
+			 {
+			    "name": "How",
+			    "type": "howType"
+			 }]
 	}]
 }

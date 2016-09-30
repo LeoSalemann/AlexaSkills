@@ -2,13 +2,15 @@ AMAZON.YesIntent got it
 AMAZON.YesIntent whats next
 AMAZON.NoIntent wheres that
 AMAZON.NoIntent whats that
-AMAZON.NoIntent how do I do that
 DescriptionIntent {Description} please
 DescriptionIntent please {Description}
 DescriptionIntent {Description}
 DescriptionIntent can you {Description}
 DescriptionIntent tell me about that
 DescriptionIntent description please
+HowIntent how do I do that
+HowIntent how
+HowIntent how do I do it
 AMAZON.StopIntent stop
 AMAZON.StopIntent off
 AMAZON.StopIntent shut up
