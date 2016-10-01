@@ -2,6 +2,7 @@ AMAZON.YesIntent got it
 AMAZON.YesIntent whats next
 AMAZON.NoIntent wheres that
 AMAZON.NoIntent whats that
+AMAZON.NoIntent where is it
 DescriptionIntent {Description} please
 DescriptionIntent please {Description}
 DescriptionIntent {Description}
