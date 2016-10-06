@@ -7,6 +7,15 @@
  * http://amzn.to/1LGWsLG
  */
 
+ /*
+  TODO
+  o Add a real file header
+  o Do some reasearch into fuel primer
+  o Do some research into parking brake
+  o Figure out where elev pitch needs to be set to.
+  o Confirm radio is not visible
+  */
+
 var Alexa = require('alexa-sdk');
 
 var states = {
@@ -22,23 +31,57 @@ var fuel_valve_location = "It's the small red knob on the left, below the window
 var fuel_valve_howto    = "Push it in, or click with mouse."
 var mixture_location = "It's the small red knob on the right, below the window.";
 var mixture_howto    = "Push it in, or hit control shift F3";
-var carb_heat_location = "It's the small black knob on the right, below the window";
-var carb_heat_howto    = "Push it in, or hit the H key";
+var carb_heat_location  = "It's the small black knob on the right, below the window";
+var carb_heat_off_howto = "Click the knob with your mouse, or hit the H key";
+var carb_heat_on_howto  = "Click the knob with your mouse, or hit the H key";
 var throttle_location = "It's the small knob on the left window sill";
-var throttle_howto    = "ease it forward with the mouse, or use the throttle on your joystick, or hit F3 and F2 to adjust";
+var throttle_howto    = "use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 to adjust";
 var fuel_primer_location = "It's kind of fake, just move on.";
 var fuel_primer_howto    = "Nothing to click here, move along";
 var brakes_location = "It's kind of fake, just hit the period key";
 var brakes_howto    = "hit the period key";
 var magnetos_location = "It's the big red lever above your left shoulder";
-var magnetos_howto    = "Turn it to both, or hit the M and plus keys until the prop starts spinning.";
-var oil_pressure_location = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
-var oil_pressure_howto    = "It should be at least halftway between the first two tick marks.";
+var magnetos_howto    = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
+starts spinning.";
+var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
+minus keys to move between the positions."
+
+var oil_pressure_location    = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
+var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks.";
+var oil_pressure_howto_30psi = "It should be within half a tick of the 40.";
+
+var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet"; // alexa can't pronounce "guage"
+
+var stick_and_rudder_howto    = "Move the joystick left and right; forward and back;  \
+Watch for correct aileron and elevator movement by looking out windows, or toggling between outside and \
+cockpit view using shift-S or joystick button 2;\
+If you have rudder pedals, use them; otherwise, twist the joystick left and right; \
+Verify by watching rudder pedals in virtual cockpit or actual rudder from external view. ";
+
+var altimiter_location = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
+var altimiter_howto    = "hit the B key to reset.  Or click the small black calibration knob, then use the \
+mouse scroll wheeel.";
+
+var elevator_trim_location = "It's the crank on the left sidewall, near the front seat."; // alexa can't pronounce "guage"
+
+var elevator_trim_howto    = "Click the crank with your mouse,  then use its scroll wheel, or \
+go to your number pad and use 7 for nose down and 1 for nose up.";
+
+var radio_location = "the radio is not visible in the cockpit, but it can be summoned with \
+shift 2 or menu path Views, Instrument Panel, Radio Stack."; // alexa can't pronounce "guage"
+
+var radio_howto    = "Verify the radio is on, click the power switch if necessary. The radio can be tuned \
+by hovering the mouse over digits and using the scroll wheel, or bring up the ATC Menu with Scroll Lock, \
+the apostrophe key, or menu path Views, Air Traffic Control; Once the ATC window is up, select the channel \
+for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
+
+var device_location = "where"; // alexa can't pronounce "guage"
+var device_howto    = "how";
 
 var LAST_HAPPY_PATH_NODE = 8;
 
 var nodes = [
-  // Happy Path - Engine Start
+  // ENGINE START - Happy Path
   { "node": 1, "message": "Turn on the fuel valve",                       "yes": 2, "no": 1001, "how": 2001 }, // fuel valve
   { "node": 2, "message": "Set the fuel mixture to Rich",                 "yes": 3, "no": 1002, "how": 2002 }, // mixture
   { "node": 3, "message": "Turn the carb heat off",                       "yes": 4, "no": 1003, "how": 2003 }, // carb heat
@@ -46,9 +89,9 @@ var nodes = [
   { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
   { "node": 6, "message": "Release the brakes",                           "yes": 7, "no": 1006, "how": 2006 }, // brakes
   { "node": 7, "message": "Set the Magneto Switch to On",                 "yes": 8, "no": 1007, "how": 2007 }, // magneto
-  { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 1008, "how": 2008 }, //oil pressue
+  { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 1008, "how": 2008 }, // oil pressue
 
-  // Where's that? Questions - Engine Start
+  // ENGINE START - Where's that? Questions
   { "node": 1001, "message": fuel_valve_location,   "yes": 2, "how": 2001 }, // fuel valve
   { "node": 1002, "message": mixture_location,      "yes": 3, "how": 2002 }, // mixture
   { "node": 1003, "message": carb_heat_location,    "yes": 4, "how": 2003 }, // carb heat
@@ -56,68 +99,74 @@ var nodes = [
   { "node": 1005, "message": fuel_primer_location,  "yes": 6, "how": 2005 }, // prime
   { "node": 1006, "message": brakes_location,       "yes": 7, "how": 2006 }, // brakes
   { "node": 1007, "message": magnetos_location,     "yes": 8, "how": 2007 }, // magneto
-  { "node": 1008, "message": oil_pressure_location, "yes": 9, "how": 2008 }, //oil pressue
+  { "node": 1008, "message": oil_pressure_location, "yes": 9, "how": 2008 }, // oil pressue
 
-  // How do I do that? Questions - Engine Start
-  { "node": 2001, "message": fuel_valve_howto,   "yes": 2, "no": 1001 }, // fuel valve
-  { "node": 2002, "message": mixture_howto,      "yes": 3, "no": 1002 }, // mixture
-  { "node": 2003, "message": carb_heat_howto,    "yes": 4, "no": 1003 }, // carb heat
-  { "node": 2004, "message": throttle_howto,     "yes": 5, "no": 1004 }, // throttle
-  { "node": 2005, "message": fuel_primer_howto,  "yes": 6, "no": 1005 }, // prime
-  { "node": 2006, "message": brakes_howto,       "yes": 7, "no": 1006 }, // brakes
-  { "node": 2007, "message": magnetos_howto,     "yes": 8, "no": 1007 },     // magneto
-  { "node": 2008, "message": oil_pressure_howto, "yes": 9, "no": 1008 }, // oil pressue
+  // ENGINE START - How do I do that? Questions
+  { "node": 2001, "message": fuel_valve_howto,    "yes": 2, "no": 1001 }, // fuel valve
+  { "node": 2002, "message": mixture_howto,       "yes": 3, "no": 1002 }, // mixture
+  { "node": 2003, "message": carb_heat_off_howto, "yes": 4, "no": 1003 }, // carb heat
+  { "node": 2004, "message": throttle_howto,      "yes": 5, "no": 1004 }, // throttle
+  { "node": 2005, "message": fuel_primer_howto,   "yes": 6, "no": 1005 }, // prime
+  { "node": 2006, "message": brakes_howto,        "yes": 7, "no": 1006 }, // brakes
+  { "node": 2007, "message": magnetos_howto,      "yes": 8, "no": 1007 }, // magneto
+  { "node": 2008, "message": oil_pressure_howto_10psi,  "yes": 9, "no": 1008 }, // oil pressue
 
-/***
-  // Happy Path - Taxi & Run-Up
-  { "node": 9,  "message": "Ensure stick and rudder are free and correct",   "yes": 10, "no": 1009, "how": 2009 }, // controls
-  { "node": 10, "message": "Calibrate Altimeter",                            "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
+
+  // TAXI & RUN-UP - Happy Path
+  { "node": 9,  "message": "Ensure stick and rudder, are free and correct",  "yes": 10, "no": 1009, "how": 2009 }, // controls
+  { "node": 10, "message": "Calibrate the Altimeter",                        "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
   { "node": 11, "message": "Set Elevator Trim for takeoff",                  "yes": 12, "no": 1011, "how": 2011 }, // trim
-  { "node": 12, "message": "Set Brakes on",                                  "yes": 13, "no": 1006, "how": 2006 }, // brakes
-  { "node": 13, "message": "Throttle up to 1500 RPM",                        "yes": 14, "no": 1004, "how": 2013 }, // throttle to 1500rpm
-  { "node": 14, "message": "Siwtch Magneto to Right, then Left, then Both. Watch for 75rpm drop", "yes": 15, "no": 1014, "how": 2014 }, //magnetos
-  { "node": 15, "message": "Turn Carb Heat On, check for rpm drop",          "yes": 16, "no": 1003, "how": 2015 }, // carb heat
-  { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",            "yes": 17, "no": 1008, "how": 2016 }, // oil pressure
-  { "node": 17, "message": "Throttle back to 1000 RPM",                      "yes": 18, "no": 1004, "how": 2017 }, // throttle to 1000 rpm
-  { "node": 18, "message": "Radio ....",                                     "yes": 19, "no": 1018, "how": 2018 }, // radio
-  { "node": 19, "message": "Taxi ... verify turning ... ",                   "yes": 20, "no": 1019, "how": 2019 }, // tbd
-  { "node": 20, "message": "next step",                                      "yes": 21, "no": 1020, "how": 2020 }, // tbd
-  { "node": 21, "message": "next step",                                  b "yes": 9999, "no": 1021, "how": 2021 }, // tbd
+  { "node": 12, "message": "Set Brakes on",                                  "yes": 13, "no": 1012, "how": 2006 }, // brakes
+  { "node": 13, "message": "Throttle up to 1500 RPM",                        "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
+  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both. \
+  Watch for 75rpm drop",                                                     "yes": 15, "no": 1014, "how": 2014 }, // magnetos
+  { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put \
+  it back",                                                                  "yes": 16, "no": 1015, "how": 2015 }, // carb heat
+  { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",            "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
+  { "node": 17, "message": "Throttle back to 1000 RPM",                      "yes": 18, "no": 1017, "how": 2017 }, // throttle to 1000 rpm
+  { "node": 18, "message": "Check radio operation",                          "yes": 19, "no": 1018, "how": 2018 }, // radio
 
-  // Where's that? Questions - Taxi & Run-Up
-  /*
-POSSIBLE PROBLEMS HERE.  I THOUGHT I COULD GET AWAY WITH RE-USING SOME OF THE 1000'S
-AND 2000'S FROM ENGINE START. CANT DO THAT BECAUSE THE YES/NO CONNECTIONS would
-TAKE YOU TO THE WRONG PLACE. SO I NEED SOME STRING VARS SO I CAN AT LEAST RE-USE THE STRINGS
-  *
-  { "node": 1009, "message": "The stick is between your knees the rudder pedals are at your feet", "yes": 10, "how": 2009 }, // controls
-  { "node": 1010, "message": "Second guage from right.", "yes": 11, "how": 2010 }, // Altimeter
-  { "node": 1011, "message": "Crank on left sidewall near fornt seat", "yes": 12, "how": 2011 }, // trim
-  { "node": 1018, "message": "where radio", "yes": 19, "how": 2018 }, // tbd
-  { "node": 1019, "message": "where is it", "yes": 20, "how": 2019 }, // tbd
-  { "node": 1020, "message": "where is it", "yes": 21, "how": 2020 }, // tbd
-  { "node": 1021, "message": "where is it", "yes": 9999, "how": 2021 }, // tbd
+  // TAXI & RUN-UP - Where's that? Questions
+  { "node": 1009, "message": stick_and_rudder_location, "yes": 10, "how": 2009 }, // controls
+  { "node": 1010, "message": altimiter_location,     "yes": 11, "how": 2010 }, // Altimeter
+  { "node": 1011, "message": elevator_trim_location, "yes": 12, "how": 2011 }, // trim
+  { "node": 1012, "message": brakes_location,        "yes": 13, "how": 2012 }, // brakes
+  { "node": 1013, "message": throttle_location,      "yes": 14, "how": 2013 }, // throttle
+  { "node": 1014, "message": magnetos_location,      "yes": 15, "how": 2014 }, // magnetos
+  { "node": 1015, "message": carb_heat_location,     "yes": 16, "how": 2015 }, // carb heat
+  { "node": 1016, "message": oil_pressure_location,  "yes": 17, "how": 2016 }, // oil pressue
+  { "node": 1017, "message": throttle_location,      "yes": 18, "how": 2017 }, // throttle
+  { "node": 1018, "message": radio_location,         "yes": 19, "how": 2018 }, // tbd
 
-  // How do I do that? Questions - Taxi & Run-Up
-  { "node": 2009, "message": "how do it", "yes": 10, "no": 1009 }, // controls
-  { "node": 2010, "message": "how do it", "yes": 11, "no": 1010 }, // Altimeter
-  { "node": 2011, "message": "how do it", "yes": 11, "no": 1011 }, // trim
-  { "node": 2012, "message": "how do it", "yes": 11, "no": 1012 }, // tbd
-  { "node": 2013, "message": "how do it", "yes": 11, "no": 1013 }, // tbd
-  { "node": 2014, "message": "how do it", "yes": 11, "no": 1014 }, // tbd
-  { "node": 2015, "message": "how do it", "yes": 11, "no": 1015 }, // tbd
-  { "node": 2016, "message": "how do it", "yes": 11, "no": 1016 }, // tbd
-  { "node": 2017, "message": "how do it", "yes": 11, "no": 1017 }, // tbd
-  { "node": 2018, "message": "how do it", "yes": 11, "no": 1018 }, // tbd
-  { "node": 2019, "message": "how do it", "yes": 11, "no": 1019 }, // tbd
-  { "node": 2020, "message": "how do it", "yes": 11, "no": 1020 }, // tbd
-  { "node": 2021, "message": "how do it", "yes": 11, "no": 1021 }, // tbd
+  // TAXI & RUN-UP - How do I do that? Questions
+  { "node": 2009, "message": stick_and_rudder_howto,   "yes": 10, "no": 1009 }, // controls
+  { "node": 2010, "message": altimiter_howto,          "yes": 11, "no": 1010 }, // Altimeter
+  { "node": 2011, "message": elevator_trim_howto,      "yes": 12, "no": 1011 }, // trim
+  { "node": 2012, "message": brakes_howto,             "yes": 13, "no": 1012 }, // brakes
+  { "node": 2013, "message": throttle_howto,           "yes": 14, "no": 1013 }, // throttle
+  { "node": 2014, "message": magnetos_toggle_howto,    "yes": 15, "no": 1014 }, // magnetos
+  { "node": 2015, "message": carb_heat_on_howto,       "yes": 16, "no": 1015 }, // carb heat
+  { "node": 2016, "message": oil_pressure_howto_30psi, "yes": 17, "no": 1016 }, // oil pressue
+  { "node": 2017, "message": throttle_howto,           "yes": 18, "no": 1017 }, // throttle
+  { "node": 2018, "message": radio_howto,              "yes": 19, "no": 1018 }, // tbd
 
+// TAKEOFF & CLIMB - Happy Path
+//  { "node": 19, "message": "**TBD** next step",    "yes": 20, "no": 1020, "how": 2020 }, // tbd
+//  { "node": 99, "message": "**TBD** next step",  "yes": 9999, "no": 1021, "how": 2021 }, // tbd
+
+
+  // TAKEOFF & CLIMB - Where's that? Questions
+//  { "node": 1019, "message": "where is it",        "yes": 20, "how": 2019 }, // tbd
+//  { "node": 1099, "message": "where is it",      "yes": 9999, "how": 2021 }, // tbd
+
+  // TAKEOFF & CLIMB - How do I do that? Questions
+//  { "node": 2019, "message": "how do it",         "yes": 20, "no": 1019 }, // tbd
+//  { "node": 2099, "message": "how do itt",      "yes": 9999, "no": 9999 }, // tbd
 
   // Checklist complete
-  { "node": 9999, "message": "Happy Flying", "yes": 0, "no": 0 },
-  ***/
-  { "node": 9, "message": "Happy Flying", "yes": 0, "no": 0 },
+//  { "node": 9999, "message": "Happy Flying", "yes": 0, "no": 0 },
+
+  { "node": 19, "message": "Happy Flying!", "yes": 0, "no": 0 },
 
 ];
 
