@@ -8,12 +8,14 @@
  */
 
  /*
+  * Most material form Microsft FSX Piper Cub Kneeboard
+  * Also <book ref>
   TODO
-  o Figure out where elev pitch needs to be set to.
-  o Mention tachamoter setting in the throttle how-to
+  x Figure out where elev pitch needs to be set to.
+  x Mention tachamoter setting in the throttle how-to
+  x Do some reasearch into fuel primer
   o Add a real file header
   ---------
-  o Do some reasearch into fuel primer
   o Do some research into parking brake
   o Confirm radio is not visible
   */
@@ -36,10 +38,12 @@ var mixture_howto    = "Push it in, or hit control shift F3";
 var carb_heat_location  = "It's the small black knob on the right, below the window";
 var carb_heat_off_howto = "Click the knob with your mouse, or hit the H key";
 var carb_heat_on_howto  = "Click the knob with your mouse, or hit the H key";
-var throttle_location = "It's the small knob on the left window sill";
-var throttle_howto    = "use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 to adjust";
-var fuel_primer_location = "It's kind of fake, just move on.";
-var fuel_primer_howto    = "Nothing to click here, move along";
+var tachometer_location = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
+var throttle_location = "The throttle is the small knob on the left window sill. The tachometer is " + tachometer_location;
+var throttle_howto    = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
+                        to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
+var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel.";
+var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in.";
 var brakes_location = "It's kind of fake, just hit the period key";
 var brakes_howto    = "hit the period key";
 var magnetos_location = "It's the big red lever above your left shoulder";
@@ -124,7 +128,9 @@ var nodes = [
                             Begin taxi and run-up checklist. \
                             Ensure stick and rudder are free and correct",  "yes": 10, "no": 1009, "how": 2009 }, // controls
   { "node": 10, "message": "Calibrate the Altimeter",                        "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
-  { "node": 11, "message": "Set Elevator Trim for takeoff",                  "yes": 12, "no": 1011, "how": 2011 }, // trim
+  { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator\
+  bead should be about 3/4 of the way to the rear of the slot, toward the UP\
+  postion. The elevator trim crank should be level and pointing foward.",    "yes": 12, "no": 1011, "how": 2011 }, // trim
   { "node": 12, "message": "Set Brakes on",                                  "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",                        "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
   { "node": 14, "message": "Switch Magneto to Right, then Left, then Both. \
@@ -188,6 +194,76 @@ var nodes = [
   { "node": 24, "message": "Takeoff and climb checklist complete. \
                             Begin cruise checklist.\
                             ",                         "yes": 9999, "no": 9999, "how": 9999 }, // brakes
+// throttle to 2150 RPM
+// watch oil pressure
+// watch oil temperature
+
+  // CRUISE - Where's that? Questions
+  // throttle to 2150 RPM
+  // watch oil pressure
+  // watch oil temperature
+
+  // CRUISE - How do I do that? Question
+  // throttle to 2150 RPM
+  // watch oil pressure
+  // watch oil temperature
+
+  // DESCENT - Happy Path
+  // SET Altimeter
+  // Fuel Valve, verify ON
+  // Throttle, reduce to ...
+  // Cab Heat on
+
+  // DESCENT - Where's that? Questions
+  // SET Altimeter
+  // Fuel Valve, verify ON
+  // Throttle, reduce to ...
+  // Cab Heat on
+
+  // DESCENT - How do I do that? Question
+  // SET Altimeter
+  // Fuel Valve, verify ON
+  // Throttle, reduce to ...
+  // Cab Heat on
+
+
+  // LANDING - Happy Path
+  // Airspeed 50-60 MPH
+  // Throttle IDLE
+
+  // LANDING - Where's that? Questions
+  // Airspeed 50-60 MPH
+  // Throttle IDLE
+
+  // LANDING - How do I do that? Question
+  // Airspeed 50-60 MPH
+  // Throttle IDLE
+
+
+  // ENGINE SHUT-DOWN - Happy Path
+  // Throttle - IDLE
+  // Mixture - CUTOFF
+  // Magnetos - OFF
+  // Fuel Valve - off
+  // Radio off
+  // Trim - set for takeoff
+
+  // ENGINE SHUT-DOWN - Where's that? Questions
+  // Throttle - IDLE
+  // Mixture - CUTOFF
+  // Magnetos - OFF
+  // Fuel Valve - off
+  // Radio off
+  // Trim - set for takeoff
+
+  // ENGINE SHUT-DOWN - How do I do that? Question
+  // Throttle - IDLE
+  // Mixture - CUTOFF
+  // Magnetos - OFF
+  // Fuel Valve - off
+  // Radio off
+  // Trim - set for takeoff
+
 
 
   // Checklist complete
