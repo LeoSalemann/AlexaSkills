@@ -8,12 +8,8 @@
  */
 
  /*
-  * Most material form Microsft FSX Piper Cub Kneeboard
-  * Also <book ref>
+  * All material form Microsft FSX Piper Cub Kneeboard
   TODO
-  x Figure out where elev pitch needs to be set to.
-  x Mention tachamoter setting in the throttle how-to
-  x Do some reasearch into fuel primer
   o Add a real file header
   ---------
   o Do some research into parking brake
@@ -33,28 +29,39 @@ var states = {
 */
 var fuel_valve_location = "It's the small red knob on the left, below the window.";
 var fuel_valve_howto    = "Push it in, or click with mouse."
+
 var mixture_location = "It's the small red knob on the right, below the window.";
 var mixture_howto    = "Push it in, or hit control shift F3";
+
 var carb_heat_location  = "It's the small black knob on the right, below the window";
 var carb_heat_off_howto = "Click the knob with your mouse, or hit the H key";
 var carb_heat_on_howto  = "Click the knob with your mouse, or hit the H key";
+
 var tachometer_location = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
-var throttle_location = "The throttle is the small knob on the left window sill. The tachometer is " + tachometer_location;
+
+var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " + tachometer_location;
+
 var throttle_howto    = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
                         to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
+
 var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel.";
 var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in.";
+
 var brakes_location = "It's kind of fake, just hit the period key";
 var brakes_howto    = "hit the period key";
-var magnetos_location = "It's the big red lever above your left shoulder";
-var magnetos_howto    = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
-starts spinning.";
+
+var magnetos_location     = "It's the big red lever above your left shoulder";
+var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
+                            starts spinning.";
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-minus keys to move between the positions."
+                            minus keys to move between the positions."
 
 var oil_pressure_location    = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
 var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks.";
 var oil_pressure_howto_30psi = "It should be within half a tick of the 40.";
+
+var oil_temperature_location = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
+var oil_temperature_howto    = "Don't let it get too hot.";
 
 var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet"; // alexa can't pronounce "guage"
 var stick_location            = "The stick is between your knees";
@@ -68,9 +75,10 @@ var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose 
 var rotate_howto    = "Pull back on the stick just enough to break contact with the ground.";
 var climb_howto     = "Pull back to pitch up and go slower; push forward and pitch down to go faster.";
 
-var altimiter_location = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
-var altimiter_howto    = "hit the B key to reset.  Or click the small black calibration knob, then use the \
-mouse scroll wheeel.";
+var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
+var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
+                                 mouse scroll wheeel.";
+var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to adjust altitidue; use stick or elevator trim to adjust speed."
 
 var elevator_trim_location = "It's the crank on the left sidewall, near the front seat."; // alexa can't pronounce "guage"
 
@@ -84,9 +92,6 @@ var radio_howto    = "Verify the radio is on, click the power switch if necessar
 by hovering the mouse over digits and using the scroll wheel, or bring up the ATC Menu with Scroll Lock, \
 the apostrophe key, or menu path Views, Air Traffic Control; Once the ATC window is up, select the channel \
 for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
-
-var device_location = "where"; // alexa can't pronounce "guage"
-var device_howto    = "how";
 
 var LAST_HAPPY_PATH_NODE = 8;
 
@@ -154,16 +159,16 @@ var nodes = [
   { "node": 1018, "message": radio_location,         "yes": 19, "how": 2018 }, // tbd
 
   // TAXI & RUN-UP - How do I do that? Questions
-  { "node": 2009, "message": stick_and_rudder_howto,   "yes": 10, "no": 1009 }, // controls
-  { "node": 2010, "message": altimiter_howto,          "yes": 11, "no": 1010 }, // Altimeter
-  { "node": 2011, "message": elevator_trim_howto,      "yes": 12, "no": 1011 }, // trim
-  { "node": 2012, "message": brakes_howto,             "yes": 13, "no": 1012 }, // brakes
-  { "node": 2013, "message": throttle_howto,           "yes": 14, "no": 1013 }, // throttle
-  { "node": 2014, "message": magnetos_toggle_howto,    "yes": 15, "no": 1014 }, // magnetos
-  { "node": 2015, "message": carb_heat_on_howto,       "yes": 16, "no": 1015 }, // carb heat
-  { "node": 2016, "message": oil_pressure_howto_30psi, "yes": 17, "no": 1016 }, // oil pressue
-  { "node": 2017, "message": throttle_howto,           "yes": 18, "no": 1017 }, // throttle
-  { "node": 2018, "message": radio_howto,              "yes": 19, "no": 1018 }, // tbd
+  { "node": 2009, "message": stick_and_rudder_howto,    "yes": 10, "no": 1009 }, // controls
+  { "node": 2010, "message": altimiter_howto_calibrate, "yes": 11, "no": 1010 }, // Altimeter
+  { "node": 2011, "message": elevator_trim_howto,       "yes": 12, "no": 1011 }, // trim
+  { "node": 2012, "message": brakes_howto,              "yes": 13, "no": 1012 }, // brakes
+  { "node": 2013, "message": throttle_howto,            "yes": 14, "no": 1013 }, // throttle
+  { "node": 2014, "message": magnetos_toggle_howto,     "yes": 15, "no": 1014 }, // magnetos
+  { "node": 2015, "message": carb_heat_on_howto,        "yes": 16, "no": 1015 }, // carb heat
+  { "node": 2016, "message": oil_pressure_howto_30psi,  "yes": 17, "no": 1016 }, // oil pressue
+  { "node": 2017, "message": throttle_howto,            "yes": 18, "no": 1017 }, // throttle
+  { "node": 2018, "message": radio_howto,               "yes": 19, "no": 1018 }, // tbd
 
 
 // TAKEOFF & CLIMB - Happy Path
@@ -180,35 +185,55 @@ var nodes = [
   { "node": 1020, "message": throttle_location, "yes": 21, "how": 2020 }, // throttle
   { "node": 1021, "message": stick_location,    "yes": 22, "how": 2021 }, // pitch nose
   { "node": 1022, "message": stick_location,    "yes": 23, "how": 2022 }, // rotate
-  { "node": 1023, "message": stick_location,    "yes": 24, "how": 24 }, // climb
+  { "node": 1023, "message": stick_location,    "yes": 24, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - How do I do that? Questions
   { "node": 2019, "message": brakes_howto,      "yes": 20, "no": 1019 }, // brakes
   { "node": 2020, "message": throttle_howto,    "yes": 21, "no": 1020 }, // throttle
   { "node": 2021, "message": pitch_nose_howto,  "yes": 22, "no": 1021 }, // pitch nose
   { "node": 2022, "message": rotate_howto,      "yes": 23, "no": 1022 }, // rotate
-  { "node": 2023, "message": climb_howto,       "yes": 24, "no": 24 }, // climb
+  { "node": 2023, "message": climb_howto,       "yes": 24, "no": 1023 }, // climb
 
 
   // CRUISE - Happy Path
   { "node": 24, "message": "Takeoff and climb checklist complete. \
-                            Begin cruise checklist.\
-                            ",                         "yes": 9999, "no": 9999, "how": 9999 }, // brakes
-// throttle to 2150 RPM
-// watch oil pressure
-// watch oil temperature
+                            Begin cruise checklist when you reach cruising altitude.",
+                                                       "yes": 25, "no": 1024, "how": 2024 }, // throttle
+
+  { "node": 25, "message": "Set throttle to 2150 RPM", "yes": 26, "no": 1025, "how": 2025 }, // oil pressure
+  { "node": 26, "message": "Watch oil pressure.",      "yes": 27, "no": 1025, "how": 2025 }, // oil pressure
+  { "node": 27, "message": "Watch oil temperature.",   "yes": 28, "no": 1026, "how": 2026 }, // oil temperature
+
 
   // CRUISE - Where's that? Questions
-  // throttle to 2150 RPM
-  // watch oil pressure
-  // watch oil temperature
+  { "node": 1024, "message": altimiter_location,       "yes": 25, "how": 2024 }, // throttle
+  { "node": 1025, "message": throttle_location,        "yes": 26, "how": 2025 }, // throttle
+  { "node": 1026, "message": oil_pressure_location,    "yes": 27, "how": 2026 }, // oil pressue
+  { "node": 1027, "message": oil_temperature_location, "yes": 28, "how": 2027 }, // oil temperature
 
   // CRUISE - How do I do that? Question
-  // throttle to 2150 RPM
-  // watch oil pressure
-  // watch oil temperature
+  { "node": 2024, "message": altimiter_howto_watch,    "yes": 25, "no": 1024 }, // throttle
+  { "node": 2025, "message": throttle_howto,           "yes": 25, "no": 1025 }, // throttle
+  { "node": 2026, "message": oil_pressure_howto_30psi, "yes": 26, "no": 1026 }, // oil pressue
+  { "node": 2027, "message": oil_temperature_howto,     "yes": 27, "no": 1027 }, // oil pressue
 
   // DESCENT - Happy Path
+  /* From FSX Learninc Center
+  A good descent profile includes knowing where to start down from cruise altitude and planning ahead for the approach. Normal descent is done with cruise power. A good rule for determining when to start your descent is the 3-to-1 rule (three miles distance per thousand feet in altitude). Take your altitude in feet, drop the last three zeros, and multiply by 3.
+
+  For example, to descend from a cruise altitude of 5,000 feet (1,524 meters) to sea level:
+  5,000 minus the last three zeros is 5.
+  5x3=15
+
+  This means you should begin your descent 15 nautical miles from your destination, maintaining a speed of 120 mph (104 knots) or less (it won't indicate this high until you descend into denser air) and a descent rate of approximately 500 feet per minute.
+
+Approaches in the Cub are basic. Enter downwind at 75 mph (use the joystick throttle or press F2). As you turn onto final, reduce your speed to 55 to 60 mph (48 to 52 knots).
+  */
+
+  { "node": 28, "message": "Cruise checklist complete. \
+                            Begin Descent checklist. When ready to land.\
+                            ", "yes": 9999, "no": 9999, "how": 9999 }, // throttle
+
   // SET Altimeter
   // Fuel Valve, verify ON
   // Throttle, reduce to ...
