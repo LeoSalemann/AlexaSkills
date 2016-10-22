@@ -13,7 +13,6 @@
   o Add a real file header
   ---------
   o Do some research into parking brake
-  o Confirm radio is not visible
   */
 
 var Alexa = require('alexa-sdk');
@@ -36,9 +35,8 @@ var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or
                         rich and control shift F2 for lean. Control shift F4 will give you full rich, \
                         Control shift F1 will cut off.";
 
-var carb_heat_location  = "It's the small black knob on the right, below the window";
-var carb_heat_off_howto = "Click the knob with your mouse, or hit the H key";
-var carb_heat_on_howto  = "Click the knob with your mouse, or hit the H key";
+var carb_heat_location    = "It's the small black knob on the right, below the window";
+var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key";
 
 var tachometer_location = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
 
@@ -77,8 +75,8 @@ If you have rudder pedals, use them; otherwise, twist the joystick left and righ
 Verify by watching rudder pedals in virtual cockpit or actual rudder from external view. ";
 
 var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose level and get the tail off the ground.";
-var rotate_howto    = "Pull back on the stick just enough to break contact with the ground.";
-var speed_howto     = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster.";
+var rotate_howto     = "Pull back on the stick just enough to break contact with the ground.";
+var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster.";
 
 var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
@@ -126,13 +124,13 @@ var nodes = [
 
   // ENGINE START - How do I do that? Questions
   { "node": 2001, "message": fuel_valve_on_howto,    "yes": 2, "no": 1001 }, // fuel valve
-  { "node": 2002, "message": mixture_howto,       "yes": 3, "no": 1002 }, // mixture
-  { "node": 2003, "message": carb_heat_off_howto, "yes": 4, "no": 1003 }, // carb heat
-  { "node": 2004, "message": throttle_howto,      "yes": 5, "no": 1004 }, // throttle
-  { "node": 2005, "message": fuel_primer_howto,   "yes": 6, "no": 1005 }, // prime
-  { "node": 2006, "message": brakes_howto,        "yes": 7, "no": 1006 }, // brakes
-  { "node": 2007, "message": magnetos_howto,      "yes": 8, "no": 1007 }, // magneto
-  { "node": 2008, "message": oil_pressure_howto_10psi,  "yes": 9, "no": 1008 }, // oil pressue
+  { "node": 2002, "message": mixture_howto,          "yes": 3, "no": 1002 }, // mixture
+  { "node": 2003, "message": carb_heat_OnOff_howto,  "yes": 4, "no": 1003 }, // carb heat
+  { "node": 2004, "message": throttle_howto,         "yes": 5, "no": 1004 }, // throttle
+  { "node": 2005, "message": fuel_primer_howto,      "yes": 6, "no": 1005 }, // prime
+  { "node": 2006, "message": brakes_howto,           "yes": 7, "no": 1006 }, // brakes
+  { "node": 2007, "message": magnetos_howto,         "yes": 8, "no": 1007 }, // magneto
+  { "node": 2008, "message": oil_pressure_howto_10psi, "yes": 9, "no": 1008 }, // oil pressue
 
 
   // TAXI & RUN-UP - Happy Path
@@ -140,9 +138,11 @@ var nodes = [
                             Begin taxi and run-up checklist. \
                             Ensure stick and rudder are free and correct",  "yes": 10, "no": 1009, "how": 2009 }, // controls
   { "node": 10, "message": "Calibrate the Altimeter",                        "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
+
   { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator\
   bead should be about 3/4 of the way to the rear of the slot, toward the UP\
   postion. The elevator trim crank should be level and pointing foward.",    "yes": 12, "no": 1011, "how": 2011 }, // trim
+
   { "node": 12, "message": "Set Brakes on",                                  "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",                        "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
   { "node": 14, "message": "Switch Magneto to Right, then Left, then Both. \
@@ -172,20 +172,19 @@ var nodes = [
   { "node": 2012, "message": brakes_howto,              "yes": 13, "no": 1012 }, // brakes
   { "node": 2013, "message": throttle_howto,            "yes": 14, "no": 1013 }, // throttle
   { "node": 2014, "message": magnetos_toggle_howto,     "yes": 15, "no": 1014 }, // magnetos
-  { "node": 2015, "message": carb_heat_on_howto,        "yes": 16, "no": 1015 }, // carb heat
+  { "node": 2015, "message": carb_heat_OnOff_howto,     "yes": 16, "no": 1015 }, // carb heat
   { "node": 2016, "message": oil_pressure_howto_30psi,  "yes": 17, "no": 1016 }, // oil pressue
   { "node": 2017, "message": throttle_howto,            "yes": 18, "no": 1017 }, // throttle
   { "node": 2018, "message": radio_howto,               "yes": 19, "no": 1018 }, // tbd
 
 
 // TAKEOFF & CLIMB - Happy Path
-  { "node": 19, "message": "Taxi and run-up checklist complete. \
-                            Begin takeoff and climb checklist.\
-                            Release brakes.",                      "yes": 20, "no": 1019, "how": 2019 }, // brakes
-  { "node": 20, "message": "Set throttle to full",                 "yes": 21, "no": 1020, "how": 2020 }, // throttle
-  { "node": 21, "message": "Pitch the nose down.",                 "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
-  { "node": 22, "message": "Watch for 45 mph, then rotate.",       "yes": 23, "no": 1022, "how": 2022 }, // rotate
-  { "node": 23, "message": "Pitch for 55 to 60 mph during climb.", "yes": 24, "no": 1023, "how": 2023 }, // climb
+  { "node": 19, "message": "Taxi and run-up checklist complete. Begin \
+                            takeoff and climb checklist. Release brakes.", "yes": 20, "no": 1019, "how": 2019 }, // brakes
+  { "node": 20, "message": "Set throttle to full",                         "yes": 21, "no": 1020, "how": 2020 }, // throttle
+  { "node": 21, "message": "Pitch the nose down.",                         "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
+  { "node": 22, "message": "Watch for 45 mph, then pull back to  rotate.", "yes": 23, "no": 1022, "how": 2022 }, // rotate
+  { "node": 23, "message": "Pitch for 55 to 60 mph during climb.",         "yes": 24, "no": 1023, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - Where's that? Questions
   { "node": 1019, "message": brakes_location,   "yes": 20, "how": 2019 }, // brakes
@@ -244,13 +243,12 @@ var nodes = [
   { "node": 2029, "message": altimiter_howto_calibrate, "yes": 29, "how": 1029 }, // SET Altimeter
   { "node": 2030, "message": fuel_valve_on_howto,       "yes": 30, "how": 1030 }, // Fuel Valve, verify ON
   { "node": 2031, "message": speed_howto,               "yes": 31, "how": 1031 }, // Throttle, reduce to ...
-  { "node": 2032, "message": carb_heat_on_howto,        "yes": 32, "how": 1032 }, // Carb Heat on
+  { "node": 2032, "message": carb_heat_OnOff_howto,     "yes": 32, "how": 1032 }, // Carb Heat on
 
   // LANDING - Happy Path
-  { "node": 33, "message": "Descent checklist complete. \
-                            Adjust throttle and pitch for \
-                            50-60 MPH when on final approach.",           "yes": 34, "no": 1033, "how": 2033 }, // Airspeed 50-60 MPH
-  { "node": 34, "message": "Set throttle to idle as you approach runway", "yes": 35, "no": 1034, "how": 2034 },   // Throttle IDLE
+  { "node": 33, "message": "Descent checklist complete. Adjust throttle \
+                            and pitch for 50-60 MPH when on final approach.", "yes": 34, "no": 1033, "how": 2033 }, // Airspeed 50-60 MPH
+  { "node": 34, "message": "Set throttle to idle as you approach runway",     "yes": 35, "no": 1034, "how": 2034 },   // Throttle IDLE
 
 
   // LANDING - Where's that? Questions
@@ -263,7 +261,8 @@ var nodes = [
 
 
   // ENGINE SHUT-DOWN - Happy Path
-  { "node": 35, "message": "Set throttle to idle after you  touch down", "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
+  { "node": 35, "message": "Set throttle to idle after you \
+                           touch down",                      "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
   { "node": 36, "message": "Taxi to your parking space, \
                            then Pull mixture to cutoff",     "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
   { "node": 37, "message": "Set magnestos to off",           "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
@@ -306,7 +305,7 @@ var repeatWelcomeMessage = "Say yes to start the checklist or no to quit.";
 var promptToStartMessage = "Say yes to continue, or no to end the checklist.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
-var promptToSayYesNo = "Say got it,  wheres that, how to answer the question.";
+var promptToSayYesNo = "Say got it,  wheres that, or how to answer the question.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
 var decisionMessage = "It's";
