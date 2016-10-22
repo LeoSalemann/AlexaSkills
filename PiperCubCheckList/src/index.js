@@ -27,11 +27,14 @@ var states = {
 /*
  * These should become a colleciton of objects, where each object has a .location and a .howto attribute.
 */
-var fuel_valve_location = "It's the small red knob on the left, below the window.";
-var fuel_valve_howto    = "Push it in, or click with mouse."
+var fuel_valve_location  = "It's the small red knob on the left, below the window.";
+var fuel_valve_on_howto  = "Push it in, or click with mouse."
+var fuel_valve_off_howto = "Pull it out, or click with mouse."
 
 var mixture_location = "It's the small red knob on the right, below the window.";
-var mixture_howto    = "Push it in, or hit control shift F3";
+var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or use control shift F3 for \
+                        rich and control shift F2 for lean. Control shift F4 will give you full rich, \
+                        Control shift F1 will cut off.";
 
 var carb_heat_location  = "It's the small black knob on the right, below the window";
 var carb_heat_off_howto = "Click the knob with your mouse, or hit the H key";
@@ -55,6 +58,8 @@ var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, a
                             starts spinning.";
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions."
+var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
+                            stops spinning.";
 
 var oil_pressure_location    = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
 var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks.";
@@ -73,7 +78,7 @@ Verify by watching rudder pedals in virtual cockpit or actual rudder from extern
 
 var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose level and get the tail off the ground.";
 var rotate_howto    = "Pull back on the stick just enough to break contact with the ground.";
-var climb_howto     = "Pull back to pitch up and go slower; push forward and pitch down to go faster.";
+var speed_howto     = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster.";
 
 var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
@@ -92,6 +97,8 @@ var radio_howto    = "Verify the radio is on, click the power switch if necessar
 by hovering the mouse over digits and using the scroll wheel, or bring up the ATC Menu with Scroll Lock, \
 the apostrophe key, or menu path Views, Air Traffic Control; Once the ATC window is up, select the channel \
 for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
+
+var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark."
 
 var LAST_HAPPY_PATH_NODE = 8;
 
@@ -118,7 +125,7 @@ var nodes = [
   { "node": 1008, "message": oil_pressure_location, "yes": 9, "how": 2008 }, // oil pressue
 
   // ENGINE START - How do I do that? Questions
-  { "node": 2001, "message": fuel_valve_howto,    "yes": 2, "no": 1001 }, // fuel valve
+  { "node": 2001, "message": fuel_valve_on_howto,    "yes": 2, "no": 1001 }, // fuel valve
   { "node": 2002, "message": mixture_howto,       "yes": 3, "no": 1002 }, // mixture
   { "node": 2003, "message": carb_heat_off_howto, "yes": 4, "no": 1003 }, // carb heat
   { "node": 2004, "message": throttle_howto,      "yes": 5, "no": 1004 }, // throttle
@@ -192,7 +199,7 @@ var nodes = [
   { "node": 2020, "message": throttle_howto,    "yes": 21, "no": 1020 }, // throttle
   { "node": 2021, "message": pitch_nose_howto,  "yes": 22, "no": 1021 }, // pitch nose
   { "node": 2022, "message": rotate_howto,      "yes": 23, "no": 1022 }, // rotate
-  { "node": 2023, "message": climb_howto,       "yes": 24, "no": 1023 }, // climb
+  { "node": 2023, "message": speed_howto,       "yes": 24, "no": 1023 }, // climb
 
 
   // CRUISE - Happy Path
@@ -215,84 +222,73 @@ var nodes = [
   { "node": 2024, "message": altimiter_howto_watch,    "yes": 25, "no": 1024 }, // throttle
   { "node": 2025, "message": throttle_howto,           "yes": 25, "no": 1025 }, // throttle
   { "node": 2026, "message": oil_pressure_howto_30psi, "yes": 26, "no": 1026 }, // oil pressue
-  { "node": 2027, "message": oil_temperature_howto,     "yes": 27, "no": 1027 }, // oil pressue
+  { "node": 2027, "message": oil_temperature_howto,    "yes": 27, "no": 1027 }, // oil pressue
 
   // DESCENT - Happy Path
-  /* From FSX Learninc Center
-  A good descent profile includes knowing where to start down from cruise altitude and planning ahead for the approach. Normal descent is done with cruise power. A good rule for determining when to start your descent is the 3-to-1 rule (three miles distance per thousand feet in altitude). Take your altitude in feet, drop the last three zeros, and multiply by 3.
-
-  For example, to descend from a cruise altitude of 5,000 feet (1,524 meters) to sea level:
-  5,000 minus the last three zeros is 5.
-  5x3=15
-
-  This means you should begin your descent 15 nautical miles from your destination, maintaining a speed of 120 mph (104 knots) or less (it won't indicate this high until you descend into denser air) and a descent rate of approximately 500 feet per minute.
-
-Approaches in the Cub are basic. Enter downwind at 75 mph (use the joystick throttle or press F2). As you turn onto final, reduce your speed to 55 to 60 mph (48 to 52 knots).
-  */
-
   { "node": 28, "message": "Cruise checklist complete. \
-                            Begin Descent checklist. When ready to land.\
-                            ", "yes": 9999, "no": 9999, "how": 9999 }, // throttle
-
-  // SET Altimeter
-  // Fuel Valve, verify ON
-  // Throttle, reduce to ...
-  // Cab Heat on
+                            Begin Descent checklist when ready to land.",
+                                                                    "yes": 29, "no": 29, "how": 29 }, // begin descent
+  { "node": 29, "message": "Set altimiter prior to descent.",       "yes": 30, "no": 1029, "how": 2029 }, // SET Altimiter
+  { "node": 30, "message": "Verify that fuel valve is on.",         "yes": 31, "no": 1030, "how": 2030 }, // Fuel Valve, verify ON
+  { "node": 31, "message": "Reduce throttle, and pitch for 75 mph", "yes": 32, "no": 1031, "how": 2031 }, // Throttle, reduce to ...
+  { "node": 32, "message": "Turn on Carb heat",                     "yes": 33, "no": 1032, "how": 2032 }, // Carb Heat on
 
   // DESCENT - Where's that? Questions
-  // SET Altimeter
-  // Fuel Valve, verify ON
-  // Throttle, reduce to ...
-  // Cab Heat on
+  { "node": 1029, "message": altimiter_location,  "yes": 29, "no": 2029 }, // SET Altimeter
+  { "node": 1030, "message": fuel_valve_location, "yes": 30, "no": 2030 }, // Fuel Valve, verify ON
+  { "node": 1031, "message": throttle_location +
+                             stick_location,      "yes": 31, "no": 2031 }, // Throttle, reduce to ...
+  { "node": 1032, "message": carb_heat_location,  "yes": 32, "no": 2032 }, // Carb Heat on
 
   // DESCENT - How do I do that? Question
-  // SET Altimeter
-  // Fuel Valve, verify ON
-  // Throttle, reduce to ...
-  // Cab Heat on
-
+  { "node": 2029, "message": altimiter_howto_calibrate, "yes": 29, "how": 1029 }, // SET Altimeter
+  { "node": 2030, "message": fuel_valve_on_howto,       "yes": 30, "how": 1030 }, // Fuel Valve, verify ON
+  { "node": 2031, "message": speed_howto,               "yes": 31, "how": 1031 }, // Throttle, reduce to ...
+  { "node": 2032, "message": carb_heat_on_howto,        "yes": 32, "how": 1032 }, // Carb Heat on
 
   // LANDING - Happy Path
-  // Airspeed 50-60 MPH
-  // Throttle IDLE
+  { "node": 33, "message": "Descent checklist complete. \
+                            Adjust throttle and pitch for \
+                            50-60 MPH when on final approach.",           "yes": 34, "no": 1033, "how": 2033 }, // Airspeed 50-60 MPH
+  { "node": 34, "message": "Set throttle to idle as you approach runway", "yes": 35, "no": 1034, "how": 2034 },   // Throttle IDLE
+
 
   // LANDING - Where's that? Questions
-  // Airspeed 50-60 MPH
-  // Throttle IDLE
+  { "node": 1033, "message": throttle_location + stick_location, "yes": 33, "no": 2033 }, // Airspeed 50-60 MPH
+  { "node": 1034, "message": throttle_location,                  "yes": 34, "no": 2034 }, // Throttle IDLE
 
   // LANDING - How do I do that? Question
-  // Airspeed 50-60 MPH
-  // Throttle IDLE
+  { "node": 2033, "message": speed_howto,    "yes": 31, "how": 1031 }, // Airspeed 50-60 MPH
+  { "node": 2034, "message": throttle_howto, "yes": 34, "no":  1034 }, // Throttle IDLE
 
 
   // ENGINE SHUT-DOWN - Happy Path
-  // Throttle - IDLE
-  // Mixture - CUTOFF
-  // Magnetos - OFF
-  // Fuel Valve - off
-  // Radio off
-  // Trim - set for takeoff
+  { "node": 35, "message": "Set throttle to idle after you  touch down", "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
+  { "node": 36, "message": "Taxi to your parking space, \
+                           then Pull mixture to cutoff",     "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
+  { "node": 37, "message": "Set magnestos to off",           "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
+  { "node": 38, "message": "Set fuel valve to off",          "yes": 39, "no": 1038, "how": 2038 }, // Fuel Valve - off
+  { "node": 39, "message": "Turn radio off",                 "yes": 40, "no": 1039, "how": 2039 }, // Radio off
+  { "node": 40, "message": "Set elevator trim for takefoff", "yes": 41, "no": 1040, "how": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - Where's that? Questions
-  // Throttle - IDLE
-  // Mixture - CUTOFF
-  // Magnetos - OFF
-  // Fuel Valve - off
-  // Radio off
-  // Trim - set for takeoff
+  { "node": 1035, "message": throttle_location,      "yes": 35, "no": 2035 }, // Throttle - IDLE
+  { "node": 1036, "message": mixture_location,       "yes": 36, "no": 2036 }, // Mixture - CUTOFF
+  { "node": 1037, "message": magnetos_location,      "yes": 37, "no": 2037 }, // Magnetos - OFF
+  { "node": 1038, "message": fuel_valve_location,    "yes": 38, "no": 2038 }, // Fuel Valve - off
+  { "node": 1039, "message": radio_location,         "yes": 39, "no": 2039 }, // Radio off
+  { "node": 1040, "message": elevator_trim_location, "yes": 40, "no": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - How do I do that? Question
-  // Throttle - IDLE
-  // Mixture - CUTOFF
-  // Magnetos - OFF
-  // Fuel Valve - off
-  // Radio off
-  // Trim - set for takeoff
-
-
+  { "node": 2035, "message": throttle_howto,       "yes": 35, "no":  1035 }, // Throttle - IDLE
+  { "node": 2036, "message": mixture_howto,        "yes": 36, "no":  1036 }, // Mixture - CUTOFF
+  { "node": 2037, "message": magnetos_off_howto,   "yes": 37, "no":  1037 }, // Magnetos - OFF
+  { "node": 2038, "message": fuel_valve_off_howto, "yes": 38, "no":  1038 }, // Fuel Valve - off
+  { "node": 2039, "message": radio_off_howto,      "yes": 39, "no":  1039 }, // Radio off
+  { "node": 2040, "message": elevator_trim_howto,  "yes": 40, "no":  1040 }, // Trim - set for takeoff
 
   // Checklist complete
-  { "node": 9999, "message": "Happy Flying", "yes": 0, "no": 0 },
+  { "node": 9999, "message": "Welcome back. Hope you had a great flight!", "yes": 0, "no": 0 },
 ];
 
 // this is used for keep track of visted nodes when we test for loops in the tree
