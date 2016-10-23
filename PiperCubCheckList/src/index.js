@@ -39,7 +39,8 @@ var tachometer_reading_tip = "You can hover your mouse over the gage to get a pr
 var tachometer_mags_carb   = "The tachometer will only move a little bit. "; // when togglig magnetos or carb heat.
 
 var carb_heat_location    = "It's the small black knob on the right, below the window";
-var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location +
+var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key ";
+var carb_heat_test_howto  = carb_heat_OnOff_howto + tachometer_mags_carb + " it's the " + tachometer_location +
                             tachometer_reading_tip;
 
 var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " +
@@ -60,11 +61,9 @@ the trigger on your joystick. Or hit control period to engage parking brake, per
 var magnetos_location     = "It's the big red lever above your left shoulder";
 var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
                             starts spinning. ";
-
-
-var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-                            minus keys to move between the positions. " + tachometer_reading_tip + tachometer_mags_carb;
-
+var magneto_test_howto    = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
+                            minus keys to move between the positions. " + tachometer_reading_tip +
+                            tachometer_mags_carb;
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning. ";
 
@@ -189,8 +188,8 @@ var nodes = [
   { "node": 2011, "message": elevator_trim_howto,       "yes": 12, "no": 1011 }, // trim
   { "node": 2012, "message": brakes_howto,              "yes": 13, "no": 1012 }, // brakes
   { "node": 2013, "message": throttle_howto,            "yes": 14, "no": 1013 }, // throttle
-  { "node": 2014, "message": magnetos_toggle_howto,     "yes": 15, "no": 1014 }, // magnetos
-  { "node": 2015, "message": carb_heat_OnOff_howto,     "yes": 16, "no": 1015 }, // carb heat
+  { "node": 2014, "message": magneto_test_howto,        "yes": 15, "no": 1014 }, // magnetos
+  { "node": 2015, "message": carb_heat_test_howto,      "yes": 16, "no": 1015 }, // carb heat
   { "node": 2016, "message": oil_pressure_howto_30psi,  "yes": 17, "no": 1016 }, // oil pressue
   { "node": 2017, "message": throttle_howto,            "yes": 18, "no": 1017 }, // throttle
   { "node": 2018, "message": radio_howto,               "yes": 19, "no": 1018 }, // tbd
@@ -315,6 +314,7 @@ var visited;
 
 // This is the intial welcome message
 var welcomeMessage = "Welcome aboard your Piper Cub.  I've got the full checklist ready for Microsoft FSX and \
+Lockheed Martin Prepared. I'm assuming your Cub is in the cold and dark state, with all systems powered off. Ready \
 to begin?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
