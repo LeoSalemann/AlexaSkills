@@ -11,8 +11,6 @@
   * All material form Micrsoft FSX Piper Cub Kneeboard
   TODO
   o Add a real file header
-  ---------
-  o Better error handling. Instead of "can't find node" say "do this to start over"
   o Add a "where am I" utterance to repeat the checcklist step.
   */
 
@@ -316,7 +314,7 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "this is build 02. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
+var welcomeMessage = "Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
                      and Lockheed Martin Prepared. Ready to fly?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
