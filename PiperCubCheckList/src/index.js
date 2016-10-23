@@ -41,18 +41,11 @@ var tachometer_reading_tip = "You can hover your mouse over the gage to get a pr
 var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
 
 var carb_heat_location    = "It's the small black knob on the right, below the window";
-//var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key";
-var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location + 
+var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location +
                             tachometer_reading_tip;
 
 var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " +
                           tachometer_location;
-
-/*
-var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
-                           to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
-*/
-
 var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
 to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tachometer_reading_tip;
 
@@ -73,11 +66,6 @@ var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, a
 
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
-
-/*
-var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-                            minus keys to move between the positions.";
-*/
 
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning.";
@@ -101,14 +89,14 @@ var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose 
 var rotate_howto     = "Pull back on the stick just enough to break contact with the ground.";
 var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster.";
 
-var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
+// alexa can't pronounce "guage"
+var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left.";
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
                                  mouse scroll wheeel.";
-var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to adjust \
-                                 altitidue; use stick or elevator trim to adjust speed.";
+var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to \
+                                 adjust altitidue; use stick or elevator trim to adjust speed.";
 
-var elevator_trim_location = "It's the crank on the left sidewall, near the front seat."; // alexa can't pronounce "guage"
-
+var elevator_trim_location = "It's the crank on the left sidewall, near the front seat.";
 var elevator_trim_howto    = "Click the crank with your mouse,  then use its scroll wheel, or \
 go to your number pad and use 7 for nose down and 1 for nose up.";
 
@@ -328,7 +316,7 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "this is build 01. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
+var welcomeMessage = "this is build 02. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
                      and Lockheed Martin Prepared. Ready to fly?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
@@ -355,7 +343,7 @@ var helpMessage = "I will guide you through the complete Piper Cub Checklist.  "
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "Ok, see you next time!";
 
-/*
+
 var oops_error_message = "I'm sorry, I've had a malfunction. Say start over, then open piper cub checklist, then \
                           say got it a bunch of times to catch up where you left off.";
 
@@ -363,8 +351,9 @@ var speechNotFoundMessage      = oops_error_message;
 var nodeNotFoundMessage        = oops_error_message;
 var descriptionNotFoundMessage = oops_error_message;
 var loopsDetectedMessage       = oops_error_message;
-*/
 
+
+/*
 var speechNotFoundMessage = "Could not find speech for node";
 
 var nodeNotFoundMessage = "In nodes array could not find node";
@@ -372,7 +361,7 @@ var nodeNotFoundMessage = "In nodes array could not find node";
 var descriptionNotFoundMessage = "Could not find description for node";
 
 var loopsDetectedMessage = "A repeated path was detected on the node tree, please fix before continuing";
-
+*/
 
 var utteranceTellMeMore = "tell me more";
 
