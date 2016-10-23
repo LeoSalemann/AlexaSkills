@@ -74,17 +74,16 @@ var oil_pressure_howto_30psi = "It should be within half a tick of the 40. ";
 var oil_temperature_location = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
 var oil_temperature_howto    = "Don't let it get too hot. ";
 
-var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet"; // alexa can't pronounce "guage"
-var stick_location            = "The stick is between your knees";
+var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet. ";
+var stick_location            = "The stick is between your knees. ";
 var stick_and_rudder_howto    = "Move the joystick left and right; forward and back;  \
 Watch for correct aileron and elevator movement by looking out windows, or toggling between outside and \
 cockpit view using shift-S or joystick button 2;\
 If you have rudder pedals, use them; otherwise, twist the joystick left and right; \
 Verify by watching rudder pedals in virtual cockpit or actual rudder from external view. ";
 
-var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose level and get the tail off the ground. ";
-var rotate_howto     = "Pull back on the stick just enough to break contact with the ground. ";
-var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster. ";
+var airspeed_indicator_location = "Second gage from the left. "; // alexa can't pronounce "guage"
+var airspeed_indicator_howto    = "Hover your mouse over it for a more accurate reading. ";
 
 // alexa can't pronounce "guage"
 var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left. ";
@@ -92,6 +91,13 @@ var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small bla
                                  mouse scroll wheeel. ";
 var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to \
                                  adjust altitidue; use stick or elevator trim to adjust speed. ";
+
+var pitch_nose_howto = "Push forward on the stick just enough to bring the nose level and get the tail off the \
+                        ground. ";
+var rotate_howto     = "Pull back on the stick just enough to break contact with the ground. ";
+var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster. \
+Or adjust pitch with elevator trim. Watch the airspeed indicator." + airspeed_indicator_location +
+airspeed_indicator_howto;
 
 var elevator_trim_location = "It's the crank on the left sidewall, near the front seat. ";
 var elevator_trim_howto    = "Click the crank with your mouse,  then use its scroll wheel, or \
