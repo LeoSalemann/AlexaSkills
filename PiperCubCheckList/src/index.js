@@ -63,7 +63,7 @@ var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, a
 
 
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-                            minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
+                            minus keys to move between the positions. " + tachometer_reading_tip + tachometer_mags_carb;
 
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning. ";
