@@ -8,11 +8,12 @@
  */
 
  /*
-  * All material form Microsft FSX Piper Cub Kneeboard
+  * All material form Micrsoft FSX Piper Cub Kneeboard
   TODO
   o Add a real file header
   ---------
-  o Do some research into parking brake
+  o Better error handling. Instead of "can't find node" say "do this to start over"
+  o Add a "where am I" utterance to repeat the checcklist step.
   */
 
 var Alexa = require('alexa-sdk');
@@ -37,25 +38,42 @@ var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or
 
 var carb_heat_location    = "It's the small black knob on the right, below the window";
 var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key";
+/*
+var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location + \
+                             tachometer_reading_tip;
+*/
 
-var tachometer_location = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
+// ### PROBABLY NEED TO MOVE THIS ABOVE carb_heat section!!! ####
+var tachometer_location    = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
+// var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading.";
+// var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
 
-var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " + tachometer_location;
-
-var throttle_howto    = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
-                        to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
+var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " \
+                          + tachometer_location;
+var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
+                           to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
+/*
+var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
+to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tachometer_reading_tip;
+*/
 
 var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel.";
 var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in.";
 
-var brakes_location = "It's kind of fake, just hit the period key";
-var brakes_howto    = "hit the period key";
+var brakes_location = "There are small square metal pedals at the floor of the cockpit, next to the round bar rudder \
+pedals, but that's not really important.  Brakes are operated with keyboard, joystick, or actual rudder pedals.";
+
+var brakes_howto    = "If you have rudder pedals, use your toes to press both pedals down.  You can also press and hold \
+the trigger on your joystick. Or hit control period to engage parking brake, period key to release.";
 
 var magnetos_location     = "It's the big red lever above your left shoulder";
 var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
                             starts spinning.";
+
+/*
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-                            minus keys to move between the positions."
+                            minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
+*/
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning.";
 
@@ -91,10 +109,19 @@ go to your number pad and use 7 for nose down and 1 for nose up.";
 var radio_location = "the radio is not visible in the cockpit, but it can be summoned with \
 shift 2 or menu path Views, Instrument Panel, Radio Stack."; // alexa can't pronounce "guage"
 
-var radio_howto    = "Verify the radio is on, click the power switch if necessary. The radio can be tuned \
-by hovering the mouse over digits and using the scroll wheel, or bring up the ATC Menu with Scroll Lock, \
-the apostrophe key, or menu path Views, Air Traffic Control; Once the ATC window is up, select the channel \
+var radio_howto    = "Verify the radio is on by making sure you can see a frequency on the green LCD display. \
+Click the power switch if necessary. The radio can be tuned by hovering the mouse over frequency digits and \
+using the scroll wheel.  For best results, bring up the ATC Menu with Scroll Lock and the apostrophe key, or \
+menu path Views, Air Traffic Control. Once the ATC window is up, follow the prompts.  If A-TIS is availalbe, \
+tune to that first to get latest weather conditions and recalibrate your altimiter";
+
+/*
+ If your airort has a control tower \
+start wwith the local A-TIS channel for weather an NO-TAMS, then sitch to ground frequency.  At an un
+
+select the channel \
 for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
+*/
 
 var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark."
 
@@ -102,8 +129,8 @@ var LAST_HAPPY_PATH_NODE = 8;
 
 var nodes = [
   // ENGINE START - Happy Path
-  { "node": 1, "message": "Begin Engine start checklist. \
-                           Turn on the fuel valve",                       "yes": 2, "no": 1001, "how": 2001 }, // fuel valve
+  { "node": 1, "message": "Begin Engine start checklist.  Turn on the \
+                           fuel valve",                                   "yes": 2, "no": 1001, "how": 2001 }, // fuel valve
   { "node": 2, "message": "Set the fuel mixture to Rich",                 "yes": 3, "no": 1002, "how": 2002 }, // mixture
   { "node": 3, "message": "Turn the carb heat off",                       "yes": 4, "no": 1003, "how": 2003 }, // carb heat
   { "node": 4, "message": "Open the Throttle just a little bit",          "yes": 5, "no": 1004, "how": 2004 }, // throttle  { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
@@ -123,35 +150,34 @@ var nodes = [
   { "node": 1008, "message": oil_pressure_location, "yes": 9, "how": 2008 }, // oil pressue
 
   // ENGINE START - How do I do that? Questions
-  { "node": 2001, "message": fuel_valve_on_howto,    "yes": 2, "no": 1001 }, // fuel valve
-  { "node": 2002, "message": mixture_howto,          "yes": 3, "no": 1002 }, // mixture
-  { "node": 2003, "message": carb_heat_OnOff_howto,  "yes": 4, "no": 1003 }, // carb heat
-  { "node": 2004, "message": throttle_howto,         "yes": 5, "no": 1004 }, // throttle
-  { "node": 2005, "message": fuel_primer_howto,      "yes": 6, "no": 1005 }, // prime
-  { "node": 2006, "message": brakes_howto,           "yes": 7, "no": 1006 }, // brakes
-  { "node": 2007, "message": magnetos_howto,         "yes": 8, "no": 1007 }, // magneto
+  { "node": 2001, "message": fuel_valve_on_howto,      "yes": 2, "no": 1001 }, // fuel valve
+  { "node": 2002, "message": mixture_howto,            "yes": 3, "no": 1002 }, // mixture
+  { "node": 2003, "message": carb_heat_OnOff_howto,    "yes": 4, "no": 1003 }, // carb heat
+  { "node": 2004, "message": throttle_howto,           "yes": 5, "no": 1004 }, // throttle
+  { "node": 2005, "message": fuel_primer_howto,        "yes": 6, "no": 1005 }, // prime
+  { "node": 2006, "message": brakes_howto,             "yes": 7, "no": 1006 }, // brakes
+  { "node": 2007, "message": magnetos_howto,           "yes": 8, "no": 1007 }, // magneto
   { "node": 2008, "message": oil_pressure_howto_10psi, "yes": 9, "no": 1008 }, // oil pressue
 
 
   // TAXI & RUN-UP - Happy Path
-  { "node": 9,  "message": "Engine start checklist complete. \
-                            Begin taxi and run-up checklist. \
-                            Ensure stick and rudder are free and correct",  "yes": 10, "no": 1009, "how": 2009 }, // controls
-  { "node": 10, "message": "Calibrate the Altimeter",                        "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
+  { "node": 9,  "message": "Engine start checklist complete. Begin taxi and run-up checklist. Ensure stick and \
+     rudder are free and correct",                      "yes": 10, "no": 1009, "how": 2009 }, // controls
+  { "node": 10, "message": "Calibrate the Altimeter",   "yes": 11, "no": 1010, "how": 2010 }, // Altimeter
 
-  { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator\
-  bead should be about 3/4 of the way to the rear of the slot, toward the UP\
-  postion. The elevator trim crank should be level and pointing foward.",    "yes": 12, "no": 1011, "how": 2011 }, // trim
+  { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator bead should be about 3/4 of the way \
+     to the rear of the slot, toward the UP position. The elevator trim crank should be level and pointing forward.",
+                                                        "yes": 12, "no": 1011, "how": 2011 }, // trim
+  { "node": 12, "message": "Set Brakes on",             "yes": 13, "no": 1012, "how": 2006 }, // brakes
+  { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
-  { "node": 12, "message": "Set Brakes on",                                  "yes": 13, "no": 1012, "how": 2006 }, // brakes
-  { "node": 13, "message": "Throttle up to 1500 RPM",                        "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
-  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both. \
-                            Watch for 75rpm drop",                           "yes": 15, "no": 1014, "how": 2014 }, // magnetos
-  { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put \
-                            it back",                                        "yes": 16, "no": 1015, "how": 2015 }, // carb heat
-  { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",            "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
-  { "node": 17, "message": "Throttle back to 1000 RPM",                      "yes": 18, "no": 1017, "how": 2017 }, // throttle to 1000 rpm
-  { "node": 18, "message": "Check radio operation",                          "yes": 19, "no": 1018, "how": 2018 }, // radio
+  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75rpm drop",
+                                                                  "yes": 15, "no": 1014, "how": 2014 }, // magnetos
+
+  { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put it back",                                        "yes": 16, "no": 1015, "how": 2015 }, // carb heat
+  { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",  "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
+  { "node": 17, "message": "Throttle back to 1000 RPM",            "yes": 18, "no": 1017, "how": 2017 }, // throttle to 1000 rpm
+  { "node": 18, "message": "Check radio operation",                "yes": 19, "no": 1018, "how": 2018 }, // radio
 
   // TAXI & RUN-UP - Where's that? Questions
   { "node": 1009, "message": stick_and_rudder_location, "yes": 10, "how": 2009 }, // controls
@@ -202,8 +228,8 @@ var nodes = [
 
 
   // CRUISE - Happy Path
-  { "node": 24, "message": "Takeoff and climb checklist complete. \
-                            Begin cruise checklist when you reach cruising altitude.",
+  { "node": 24, "message": "Takeoff and climb checklist complete.Begin cruise checklist \
+                            when you are within 50 feet of  cruising altitude.",
                                                        "yes": 25, "no": 1024, "how": 2024 }, // throttle
 
   { "node": 25, "message": "Set throttle to 2150 RPM", "yes": 26, "no": 1025, "how": 2025 }, // oil pressure
@@ -261,14 +287,14 @@ var nodes = [
 
 
   // ENGINE SHUT-DOWN - Happy Path
-  { "node": 35, "message": "Set throttle to idle after you \
-                           touch down",                      "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
+  { "node": 35, "message": "Set throttle to idle after you  touch down",
+                                                            "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
   { "node": 36, "message": "Taxi to your parking space, \
-                           then Pull mixture to cutoff",     "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
-  { "node": 37, "message": "Set magnestos to off",           "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
-  { "node": 38, "message": "Set fuel valve to off",          "yes": 39, "no": 1038, "how": 2038 }, // Fuel Valve - off
-  { "node": 39, "message": "Turn radio off",                 "yes": 40, "no": 1039, "how": 2039 }, // Radio off
-  { "node": 40, "message": "Set elevator trim for takefoff", "yes": 41, "no": 1040, "how": 2040 }, // Trim - set for takeoff
+                           then Pull mixture to cutoff",    "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
+  { "node": 37, "message": "Set magnestos to off",          "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
+  { "node": 38, "message": "Set fuel valve to off",         "yes": 39, "no": 1038, "how": 2038 }, // Fuel Valve - off
+  { "node": 39, "message": "Turn radio off",                "yes": 40, "no": 1039, "how": 2039 }, // Radio off
+  { "node": 40, "message": "Set elevator trim for takeoff", "yes": 9999, "no": 1040, "how": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - Where's that? Questions
   { "node": 1035, "message": throttle_location,      "yes": 35, "no": 2035 }, // Throttle - IDLE
@@ -296,7 +322,8 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welcome aboard your Piper Cub.  Ready to fly?";
+var welcomeMessage = "this is a new build. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
+                     and Lockheed Martin Prepared. Ready to fly?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
 var repeatWelcomeMessage = "Say yes to start the checklist or no to quit.";
@@ -305,19 +332,32 @@ var repeatWelcomeMessage = "Say yes to start the checklist or no to quit.";
 var promptToStartMessage = "Say yes to continue, or no to end the checklist.";
 
 // This is the prompt during the game when Alexa doesnt hear or understand a yes / no reply
-var promptToSayYesNo = "Say got it,  wheres that, or how to answer the question.";
+var promptToSayYesNo = "Say got it, wheres that, or how do I do that, after each checklist item.";
 
 // This is the response to the user after the final question when Alex decides on what group choice the user should be given
 var decisionMessage = "It's";
 
-// This is the prompt to ask the user if they would like to hear a short description of thier chosen profession or to play again
-var playAgainMessage = "Say 'how do I do that' to hear a short description for this profession, or do you want to play again?";
+var helpText = "For each item, you can say, wheres that; if you can't find the appropriate cockpit control, \
+or say how do I do that; if you don't know how to operate it. When you're ready for the next checklist item, \
+say got it.";
+
+var playAgainMessage = helpText;
 
 // this is the help message during the setup at the beginning of the game
-var helpMessage = "I will guide you through the engine start checklsit. Want to start now?";
+var helpMessage = "I will guide you through the complete Piper Cub Checklist.  " + helpText + "  Ready to start?";
 
 // This is the goodbye message when the user has asked to quit the game
 var goodbyeMessage = "Ok, see you next time!";
+
+/*
+var oops_error_message = "I'm sorry, I've had a malfunction. Say start over, then open piper cub checklist, then \
+                          say got it a bunch of times to catch up where you left off.";
+
+var speechNotFoundMessage      = oops_error_message;
+var nodeNotFoundMessage        = oops_error_message;
+var descriptionNotFoundMessage = oops_error_message;
+var loopsDetectedMessage       = oops_error_message;
+*/
 
 var speechNotFoundMessage = "Could not find speech for node";
 
@@ -326,6 +366,7 @@ var nodeNotFoundMessage = "In nodes array could not find node";
 var descriptionNotFoundMessage = "Could not find description for node";
 
 var loopsDetectedMessage = "A repeated path was detected on the node tree, please fix before continuing";
+
 
 var utteranceTellMeMore = "tell me more";
 
