@@ -103,8 +103,8 @@ shift 2 or menu path Views, Instrument Panel, Radio Stack. "; // alexa can't pro
 var radio_howto    = "Verify the radio is on by making sure you can see a frequency on the green LCD display. \
 Click the power switch if necessary. The radio can be tuned by hovering the mouse over frequency digits and \
 using the scroll wheel.  For best results, bring up the ATC Menu with Scroll Lock and the apostrophe key, or \
-menu path Views, Air Traffic Control. Once the ATC window is up, follow the prompts.  If A-TIS is availalbe, \
-tune to that first to get latest weather conditions and recalibrate your altimiter";
+menu path Views, Air Traffic Control. Once the ATC window is up, follow the prompts.  If A-TIS is available, \
+tune to that first to get latest weather conditions and recalibrate your altimiter. ";
 
 /*
  If your airort has a control tower \
