@@ -314,8 +314,8 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
-                     and Lockheed Martin Prepared. Ready to fly?";
+var welcomeMessage = "Welcome aboard your Piper Cub.  I've got the full checklist ready for Microsoft FSX and \
+to begin?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
 var repeatWelcomeMessage = "Say yes to start the checklist or no to quit.";
