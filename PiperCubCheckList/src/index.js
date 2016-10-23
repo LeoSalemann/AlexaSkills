@@ -71,7 +71,7 @@ var oil_pressure_location    = "It's the bottom half of the rightmost gage"; // 
 var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks. ";
 var oil_pressure_howto_30psi = "It should be within half a tick of the 40. ";
 
-var oil_temperature_location = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
+var oil_temperature_location = "It's the top half of the rightmost gage"; // alexa can't pronounce "guage"
 var oil_temperature_howto    = "Don't let it get too hot. ";
 
 var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet. ";
@@ -209,7 +209,7 @@ var nodes = [
   { "node": 21, "message": "Pitch the nose down.",                         "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
   { "node": 22, "message": "Watch for 45 mph, then pull back to rotate. " +
                 airspeed_indicator_location +  airspeed_indicator_howto, "yes": 23, "no": 1022, "how": 2022 }, // rotate
-  { "node": 23, "message": "Pitch for 55 to 60 mph during climb." +
+  { "node": 23, "message": "Pitch for 55 to 60 mph during climb. " +
                 airspeed_indicator_location +  airspeed_indicator_howto, "yes": 24, "no": 1023, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - Where's that? Questions
