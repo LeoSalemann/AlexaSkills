@@ -36,26 +36,26 @@ var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or
                         rich and control shift F2 for lean. Control shift F4 will give you full rich, \
                         Control shift F1 will cut off.";
 
-var carb_heat_location    = "It's the small black knob on the right, below the window";
-var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key";
-/*
-var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location + \
-                             tachometer_reading_tip;
-*/
-
-// ### PROBABLY NEED TO MOVE THIS ABOVE carb_heat section!!! ####
 var tachometer_location    = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
-// var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading.";
-// var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
+var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading.";
+var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
+
+var carb_heat_location    = "It's the small black knob on the right, below the window";
+//var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key";
+var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location + 
+                            tachometer_reading_tip;
 
 var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " +
                           tachometer_location;
-var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
-                           to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
+
 /*
 var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
-to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tachometer_reading_tip;
+                           to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
 */
+
+var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
+to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tachometer_reading_tip;
+
 
 var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel.";
 var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in.";
@@ -70,12 +70,14 @@ var magnetos_location     = "It's the big red lever above your left shoulder";
 var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
                             starts spinning.";
 
-/*
+
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
-*/
+
+/*
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions.";
+*/
 
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning.";
@@ -326,7 +328,7 @@ var visited;
 // These are messages that Alexa says to the user during conversation
 
 // This is the intial welcome message
-var welcomeMessage = "this is a new build. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
+var welcomeMessage = "this is build 01. Welcome aboard your Piper Cub.  I've got a checklist ready for Microsoft FSX \
                      and Lockheed Martin Prepared. Ready to fly?";
 
 // This is the message that is repeated if the response to the initial welcome message is not heard
