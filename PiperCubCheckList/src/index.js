@@ -207,10 +207,10 @@ var nodes = [
                             takeoff and climb checklist. Release brakes.", "yes": 20, "no": 1019, "how": 2019 }, // brakes
   { "node": 20, "message": "Set throttle to full",                         "yes": 21, "no": 1020, "how": 2020 }, // throttle
   { "node": 21, "message": "Pitch the nose down.",                         "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
-  { "node": 22, "message": "Watch for 45 mph, then pull back to  rotate." +
-                + airspeed_indicator_location +  airspeed_indicator_howto, "yes": 23, "no": 1022, "how": 2022 }, // rotate
+  { "node": 22, "message": "Watch for 45 mph, then pull back to rotate. " +
+                airspeed_indicator_location +  airspeed_indicator_howto, "yes": 23, "no": 1022, "how": 2022 }, // rotate
   { "node": 23, "message": "Pitch for 55 to 60 mph during climb." +
-                + airspeed_indicator_location +  airspeed_indicator_howto, "yes": 24, "no": 1023, "how": 2023 }, // climb
+                airspeed_indicator_location +  airspeed_indicator_howto, "yes": 24, "no": 1023, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - Where's that? Questions
   { "node": 1019, "message": brakes_location,   "yes": 20, "how": 2019 }, // brakes
@@ -228,13 +228,13 @@ var nodes = [
 
 
   // CRUISE - Happy Path
-  { "node": 24, "message": "Takeoff and climb checklist complete.Begin cruise checklist \
+  { "node": 24, "message": "Takeoff and climb checklist complete. Begin cruise checklist \
                             when you are within 50 feet of  cruising altitude.",
                                                        "yes": 25, "no": 1024, "how": 2024 }, // throttle
 
   { "node": 25, "message": "Set throttle to 2150 RPM", "yes": 26, "no": 1025, "how": 2025 }, // oil pressure
-  { "node": 26, "message": "Watch oil pressure.",      "yes": 27, "no": 1025, "how": 2025 }, // oil pressure
-  { "node": 27, "message": "Watch oil temperature.",   "yes": 28, "no": 1026, "how": 2026 }, // oil temperature
+  { "node": 26, "message": "Watch oil pressure.",      "yes": 27, "no": 1026, "how": 2026 }, // oil pressure
+  { "node": 27, "message": "Watch oil temperature.",   "yes": 28, "no": 1027, "how": 2027 }, // oil temperature
 
 
   // CRUISE - Where's that? Questions
@@ -259,17 +259,17 @@ var nodes = [
   { "node": 32, "message": "Turn on Carb heat",                     "yes": 33, "no": 1032, "how": 2032 }, // Carb Heat on
 
   // DESCENT - Where's that? Questions
-  { "node": 1029, "message": altimiter_location,  "yes": 29, "no": 2029 }, // SET Altimeter
-  { "node": 1030, "message": fuel_valve_location, "yes": 30, "no": 2030 }, // Fuel Valve, verify ON
+  { "node": 1029, "message": altimiter_location,  "yes": 30, "no": 2029 }, // SET Altimeter
+  { "node": 1030, "message": fuel_valve_location, "yes": 31, "no": 2030 }, // Fuel Valve, verify ON
   { "node": 1031, "message": throttle_location +
-                             stick_location,      "yes": 31, "no": 2031 }, // Throttle, reduce to ...
-  { "node": 1032, "message": carb_heat_location,  "yes": 32, "no": 2032 }, // Carb Heat on
+                             stick_location,      "yes": 32, "no": 2031 }, // Throttle, reduce to ...
+  { "node": 1032, "message": carb_heat_location,  "yes": 33, "no": 2032 }, // Carb Heat on
 
   // DESCENT - How do I do that? Question
-  { "node": 2029, "message": altimiter_howto_calibrate, "yes": 29, "how": 1029 }, // SET Altimeter
-  { "node": 2030, "message": fuel_valve_on_howto,       "yes": 30, "how": 1030 }, // Fuel Valve, verify ON
-  { "node": 2031, "message": speed_howto,               "yes": 31, "how": 1031 }, // Throttle, reduce to ...
-  { "node": 2032, "message": carb_heat_OnOff_howto,     "yes": 32, "how": 1032 }, // Carb Heat on
+  { "node": 2029, "message": altimiter_howto_calibrate, "yes": 30, "how": 1029 }, // SET Altimeter
+  { "node": 2030, "message": fuel_valve_on_howto,       "yes": 31, "how": 1030 }, // Fuel Valve, verify ON
+  { "node": 2031, "message": speed_howto,               "yes": 32, "how": 1031 }, // Throttle, reduce to ...
+  { "node": 2032, "message": carb_heat_OnOff_howto,     "yes": 33, "how": 1032 }, // Carb Heat on
 
   // LANDING - Happy Path
   { "node": 33, "message": "Descent checklist complete. Adjust throttle \
@@ -278,8 +278,8 @@ var nodes = [
 
 
   // LANDING - Where's that? Questions
-  { "node": 1033, "message": throttle_location + stick_location, "yes": 33, "no": 2033 }, // Airspeed 50-60 MPH
-  { "node": 1034, "message": throttle_location,                  "yes": 34, "no": 2034 }, // Throttle IDLE
+  { "node": 1033, "message": throttle_location + stick_location, "yes": 34, "no": 2033 }, // Airspeed 50-60 MPH
+  { "node": 1034, "message": throttle_location,                  "yes": 35, "no": 2034 }, // Throttle IDLE
 
   // LANDING - How do I do that? Question
   { "node": 2033, "message": speed_howto,    "yes": 31, "how": 1031 }, // Airspeed 50-60 MPH
@@ -294,26 +294,26 @@ var nodes = [
   { "node": 37, "message": "Set magnestos to off",          "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
   { "node": 38, "message": "Set fuel valve to off",         "yes": 39, "no": 1038, "how": 2038 }, // Fuel Valve - off
   { "node": 39, "message": "Turn radio off",                "yes": 40, "no": 1039, "how": 2039 }, // Radio off
-  { "node": 40, "message": "Set elevator trim for takeoff", "yes": 9999, "no": 1040, "how": 2040 }, // Trim - set for takeoff
+  { "node": 40, "message": "Set elevator trim for takeoff", "yes": 41, "no": 1040, "how": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - Where's that? Questions
-  { "node": 1035, "message": throttle_location,      "yes": 35, "no": 2035 }, // Throttle - IDLE
-  { "node": 1036, "message": mixture_location,       "yes": 36, "no": 2036 }, // Mixture - CUTOFF
-  { "node": 1037, "message": magnetos_location,      "yes": 37, "no": 2037 }, // Magnetos - OFF
-  { "node": 1038, "message": fuel_valve_location,    "yes": 38, "no": 2038 }, // Fuel Valve - off
-  { "node": 1039, "message": radio_location,         "yes": 39, "no": 2039 }, // Radio off
-  { "node": 1040, "message": elevator_trim_location, "yes": 40, "no": 2040 }, // Trim - set for takeoff
+  { "node": 1035, "message": throttle_location,      "yes": 36, "no": 2035 }, // Throttle - IDLE
+  { "node": 1036, "message": mixture_location,       "yes": 37, "no": 2036 }, // Mixture - CUTOFF
+  { "node": 1037, "message": magnetos_location,      "yes": 38, "no": 2037 }, // Magnetos - OFF
+  { "node": 1038, "message": fuel_valve_location,    "yes": 39, "no": 2038 }, // Fuel Valve - off
+  { "node": 1039, "message": radio_location,         "yes": 40, "no": 2039 }, // Radio off
+  { "node": 1040, "message": elevator_trim_location, "yes": 41, "no": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - How do I do that? Question
-  { "node": 2035, "message": throttle_howto,       "yes": 35, "no":  1035 }, // Throttle - IDLE
-  { "node": 2036, "message": mixture_howto,        "yes": 36, "no":  1036 }, // Mixture - CUTOFF
-  { "node": 2037, "message": magnetos_off_howto,   "yes": 37, "no":  1037 }, // Magnetos - OFF
-  { "node": 2038, "message": fuel_valve_off_howto, "yes": 38, "no":  1038 }, // Fuel Valve - off
-  { "node": 2039, "message": radio_off_howto,      "yes": 39, "no":  1039 }, // Radio off
-  { "node": 2040, "message": elevator_trim_howto,  "yes": 40, "no":  1040 }, // Trim - set for takeoff
+  { "node": 2035, "message": throttle_howto,       "yes": 36, "no":  1035 }, // Throttle - IDLE
+  { "node": 2036, "message": mixture_howto,        "yes": 37, "no":  1036 }, // Mixture - CUTOFF
+  { "node": 2037, "message": magnetos_off_howto,   "yes": 38, "no":  1037 }, // Magnetos - OFF
+  { "node": 2038, "message": fuel_valve_off_howto, "yes": 39, "no":  1038 }, // Fuel Valve - off
+  { "node": 2039, "message": radio_off_howto,      "yes": 40, "no":  1039 }, // Radio off
+  { "node": 2040, "message": elevator_trim_howto,  "yes": 41, "no":  1040 }, // Trim - set for takeoff
 
   // Checklist complete
-  { "node": 9999, "message": "Welcome back. Hope you had a great flight!", "yes": 0, "no": 0 },
+  { "node": 41, "message": "Welcome back. Hope you had a great flight!", "yes": 0, "no": 0 },
 ];
 
 // this is used for keep track of visted nodes when we test for loops in the tree
