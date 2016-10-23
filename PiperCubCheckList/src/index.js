@@ -126,7 +126,7 @@ var nodes = [
   { "node": 3, "message": "Turn the carb heat off",                       "yes": 4, "no": 1003, "how": 2003 }, // carb heat
   { "node": 4, "message": "Open the Throttle just a little bit",          "yes": 5, "no": 1004, "how": 2004 }, // throttle  { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
   { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
-  { "node": 6, "message": "Release the brakes",                           "yes": 7, "no": 1006, "how": 2006 }, // brakes
+  { "node": 6, "message": "Set the brakes",                               "yes": 7, "no": 1006, "how": 2006 }, // brakes
   { "node": 7, "message": "Set the Magneto Switch to On",                 "yes": 8, "no": 1007, "how": 2007 }, // magneto
   { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 1008, "how": 2008 }, // oil pressue
 
