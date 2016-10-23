@@ -25,18 +25,18 @@ var states = {
 /*
  * These should become a colleciton of objects, where each object has a .location and a .howto attribute.
 */
-var fuel_valve_location  = "It's the small red knob on the left, below the window.";
-var fuel_valve_on_howto  = "Push it in, or click with mouse.";
-var fuel_valve_off_howto = "Pull it out, or click with mouse.";
+var fuel_valve_location  = "It's the small red knob on the left, below the window. ";
+var fuel_valve_on_howto  = "Push it in, or click with mouse. ";
+var fuel_valve_off_howto = "Pull it out, or click with mouse. ";
 
-var mixture_location = "It's the small red knob on the right, below the window.";
+var mixture_location = "It's the small red knob on the right, below the window. ";
 var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or use control shift F3 for \
                         rich and control shift F2 for lean. Control shift F4 will give you full rich, \
-                        Control shift F1 will cut off.";
+                        Control shift F1 will cut off. ";
 
-var tachometer_location    = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise.";
-var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading.";
-var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
+var tachometer_location    = "Leftmost gage on the instrument panel.  Needle moves counter-clockwise. ";
+var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading. ";
+var tachometer_mags_carb   = "The tachometer will only move a little bit. "; // when togglig magnetos or carb heat.
 
 var carb_heat_location    = "It's the small black knob on the right, below the window";
 var carb_heat_OnOff_howto = "Click the knob with your mouse, or hit the H key " + tachometer_location +
@@ -48,32 +48,32 @@ var throttle_howto      = "Use the throttle on your joystick, or ease it forward
 to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tachometer_reading_tip;
 
 
-var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel.";
-var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in.";
+var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel. ";
+var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in. ";
 
 var brakes_location = "There are small square metal pedals at the floor of the cockpit, next to the round bar rudder \
-pedals, but that's not really important.  Brakes are operated with keyboard, joystick, or actual rudder pedals.";
+pedals, but that's not really important.  Brakes are operated with keyboard, joystick, or actual rudder pedals. ";
 
 var brakes_howto    = "If you have rudder pedals, use your toes to press both pedals down.  You can also press and hold \
-the trigger on your joystick. Or hit control period to engage parking brake, period key to release.";
+the trigger on your joystick. Or hit control period to engage parking brake, period key to release. ";
 
 var magnetos_location     = "It's the big red lever above your left shoulder";
 var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
-                            starts spinning.";
+                            starts spinning. ";
 
 
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
 
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
-                            stops spinning.";
+                            stops spinning. ";
 
 var oil_pressure_location    = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
-var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks.";
-var oil_pressure_howto_30psi = "It should be within half a tick of the 40.";
+var oil_pressure_howto_10psi = "It should be at least halftway between the first two tick marks. ";
+var oil_pressure_howto_30psi = "It should be within half a tick of the 40. ";
 
 var oil_temperature_location = "It's the bottom half of the rightmost gage"; // alexa can't pronounce "guage"
-var oil_temperature_howto    = "Don't let it get too hot.";
+var oil_temperature_howto    = "Don't let it get too hot. ";
 
 var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet"; // alexa can't pronounce "guage"
 var stick_location            = "The stick is between your knees";
@@ -83,23 +83,23 @@ cockpit view using shift-S or joystick button 2;\
 If you have rudder pedals, use them; otherwise, twist the joystick left and right; \
 Verify by watching rudder pedals in virtual cockpit or actual rudder from external view. ";
 
-var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose level and get the tail off the ground.";
-var rotate_howto     = "Pull back on the stick just enough to break contact with the ground.";
-var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster.";
+var pitch_nose_howto = "PUsh forward on the stick just enough to bring the nose level and get the tail off the ground. ";
+var rotate_howto     = "Pull back on the stick just enough to break contact with the ground. ";
+var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster. ";
 
 // alexa can't pronounce "guage"
-var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left.";
+var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left. ";
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
-                                 mouse scroll wheeel.";
+                                 mouse scroll wheeel. ";
 var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to \
-                                 adjust altitidue; use stick or elevator trim to adjust speed.";
+                                 adjust altitidue; use stick or elevator trim to adjust speed. ";
 
-var elevator_trim_location = "It's the crank on the left sidewall, near the front seat.";
+var elevator_trim_location = "It's the crank on the left sidewall, near the front seat. ";
 var elevator_trim_howto    = "Click the crank with your mouse,  then use its scroll wheel, or \
-go to your number pad and use 7 for nose down and 1 for nose up.";
+go to your number pad and use 7 for nose down and 1 for nose up. ";
 
 var radio_location = "the radio is not visible in the cockpit, but it can be summoned with \
-shift 2 or menu path Views, Instrument Panel, Radio Stack."; // alexa can't pronounce "guage"
+shift 2 or menu path Views, Instrument Panel, Radio Stack. "; // alexa can't pronounce "guage"
 
 var radio_howto    = "Verify the radio is on by making sure you can see a frequency on the green LCD display. \
 Click the power switch if necessary. The radio can be tuned by hovering the mouse over frequency digits and \
@@ -112,10 +112,10 @@ tune to that first to get latest weather conditions and recalibrate your altimit
 start wwith the local A-TIS channel for weather an NO-TAMS, then sitch to ground frequency.  At an un
 
 select the channel \
-for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
+for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary. ";
 */
 
-var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark.";
+var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark. ";
 
 var LAST_HAPPY_PATH_NODE = 8;
 
