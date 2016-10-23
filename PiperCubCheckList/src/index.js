@@ -72,7 +72,7 @@ var oil_pressure_howto_10psi = "It should be at least halftway between the first
 var oil_pressure_howto_30psi = "It should be within half a tick of the 40. ";
 
 var oil_temperature_location = "It's the top half of the rightmost gage"; // alexa can't pronounce "guage"
-var oil_temperature_howto    = "Don't let it get too hot. ";
+var oil_temperature_howto    = "Don't let it get too hot. Throttle back to let it cool.";
 
 var stick_and_rudder_location = "The stick is between your knees; the rudder pedals are at your feet. ";
 var stick_location            = "The stick is between your knees. ";
@@ -168,7 +168,7 @@ var nodes = [
   { "node": 12, "message": "Set Brakes on",             "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
-  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75rpm drop. "
+  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75 RPM drop. "
                            + tachometer_reading_tip,
                                                                    "yes": 15, "no": 1014, "how": 2014 }, // magnetos
 
@@ -203,14 +203,16 @@ var nodes = [
 
 
 // TAKEOFF & CLIMB - Happy Path
-  { "node": 19, "message": "Taxi and run-up checklist complete. Begin \
-                            takeoff and climb checklist. Release brakes.", "yes": 20, "no": 1019, "how": 2019 }, // brakes
-  { "node": 20, "message": "Set throttle to full",                         "yes": 21, "no": 1020, "how": 2020 }, // throttle
-  { "node": 21, "message": "Pitch the nose down.",                         "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
-  { "node": 22, "message": "Watch for 45 mph, then pull back to rotate. " +
-                airspeed_indicator_location +  airspeed_indicator_howto, "yes": 23, "no": 1022, "how": 2022 }, // rotate
-  { "node": 23, "message": "Pitch for 55 to 60 mph during climb. " +
-                airspeed_indicator_location +  airspeed_indicator_howto, "yes": 24, "no": 1023, "how": 2023 }, // climb
+  { "node": 19, "message": "Taxi and run-up checklist complete. Begin takeoff and climb checklist. \
+                 Release brakes.",                               "yes": 20, "no": 1019, "how": 2019 }, // brakes
+  { "node": 20, "message": "Set throttle to full",               "yes": 21, "no": 1020, "how": 2020 }, // throttle
+  { "node": 21, "message": "Pitch the nose down.",               "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
+
+  { "node": 22, "message": "Watch for 45 mph, then pull back to rotate. Airspeed indicator is " +
+    airspeed_indicator_location +  airspeed_indicator_howto,     "yes": 23, "no": 1022, "how": 2022 }, // rotate
+
+  { "node": 23, "message": "Pitch for 55 to 60 mph during climb.  Airspeed indicator is " +
+    airspeed_indicator_location +  airspeed_indicator_howto,     "yes": 24, "no": 1023, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - Where's that? Questions
   { "node": 1019, "message": brakes_location,   "yes": 20, "how": 2019 }, // brakes
@@ -245,13 +247,12 @@ var nodes = [
 
   // CRUISE - How do I do that? Question
   { "node": 2024, "message": altimiter_howto_watch,    "yes": 25, "no": 1024 }, // throttle
-  { "node": 2025, "message": throttle_howto,           "yes": 25, "no": 1025 }, // throttle
-  { "node": 2026, "message": oil_pressure_howto_30psi, "yes": 26, "no": 1026 }, // oil pressue
-  { "node": 2027, "message": oil_temperature_howto,    "yes": 27, "no": 1027 }, // oil pressue
+  { "node": 2025, "message": throttle_howto,           "yes": 26, "no": 1025 }, // throttle
+  { "node": 2026, "message": oil_pressure_howto_30psi, "yes": 27, "no": 1026 }, // oil pressue
+  { "node": 2027, "message": oil_temperature_howto,    "yes": 28, "no": 1027 }, // oil pressue
 
   // DESCENT - Happy Path
-  { "node": 28, "message": "Cruise checklist complete. \
-                            Begin Descent checklist when ready to land.",
+  { "node": 28, "message": "Cruise checklist complete.  Begin Descent checklist when ready to land.",
                                                                     "yes": 29, "no": 29, "how": 29 }, // begin descent
   { "node": 29, "message": "Set altimiter prior to descent.",       "yes": 30, "no": 1029, "how": 2029 }, // SET Altimiter
   { "node": 30, "message": "Verify that fuel valve is on.",         "yes": 31, "no": 1030, "how": 2030 }, // Fuel Valve, verify ON
@@ -261,8 +262,8 @@ var nodes = [
   // DESCENT - Where's that? Questions
   { "node": 1029, "message": altimiter_location,  "yes": 30, "no": 2029 }, // SET Altimeter
   { "node": 1030, "message": fuel_valve_location, "yes": 31, "no": 2030 }, // Fuel Valve, verify ON
-  { "node": 1031, "message": throttle_location +
-                             stick_location,      "yes": 32, "no": 2031 }, // Throttle, reduce to ...
+  { "node": 1031, "message": throttle_location +  stick_location,
+                                                  "yes": 32, "no": 2031 }, // Throttle, reduce to ...
   { "node": 1032, "message": carb_heat_location,  "yes": 33, "no": 2032 }, // Carb Heat on
 
   // DESCENT - How do I do that? Question
