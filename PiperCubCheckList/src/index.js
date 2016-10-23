@@ -96,7 +96,7 @@ var pitch_nose_howto = "Push forward on the stick just enough to bring the nose 
                         ground. ";
 var rotate_howto     = "Pull back on the stick just enough to break contact with the ground. ";
 var speed_howto      = "Pull back on the stick to pitch up and go slower; push forward and pitch down to go faster. \
-Or adjust pitch with elevator trim. Watch the airspeed indicator." + airspeed_indicator_location +
+Or adjust pitch with elevator trim. Watch the airspeed indicator. " + airspeed_indicator_location +
 airspeed_indicator_howto;
 
 var elevator_trim_location = "It's the crank on the left sidewall, near the front seat. ";
@@ -207,8 +207,10 @@ var nodes = [
                             takeoff and climb checklist. Release brakes.", "yes": 20, "no": 1019, "how": 2019 }, // brakes
   { "node": 20, "message": "Set throttle to full",                         "yes": 21, "no": 1020, "how": 2020 }, // throttle
   { "node": 21, "message": "Pitch the nose down.",                         "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
-  { "node": 22, "message": "Watch for 45 mph, then pull back to  rotate.", "yes": 23, "no": 1022, "how": 2022 }, // rotate
-  { "node": 23, "message": "Pitch for 55 to 60 mph during climb.",         "yes": 24, "no": 1023, "how": 2023 }, // climb
+  { "node": 22, "message": "Watch for 45 mph, then pull back to  rotate." +
+                + airspeed_indicator_location +  airspeed_indicator_howto, "yes": 23, "no": 1022, "how": 2022 }, // rotate
+  { "node": 23, "message": "Pitch for 55 to 60 mph during climb." +
+                + airspeed_indicator_location +  airspeed_indicator_howto, "yes": 24, "no": 1023, "how": 2023 }, // climb
 
   // TAKEOFF & CLIMB - Where's that? Questions
   { "node": 1019, "message": brakes_location,   "yes": 20, "how": 2019 }, // brakes
