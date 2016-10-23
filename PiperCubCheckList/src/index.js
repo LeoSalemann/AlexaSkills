@@ -28,8 +28,8 @@ var states = {
  * These should become a colleciton of objects, where each object has a .location and a .howto attribute.
 */
 var fuel_valve_location  = "It's the small red knob on the left, below the window.";
-var fuel_valve_on_howto  = "Push it in, or click with mouse."
-var fuel_valve_off_howto = "Pull it out, or click with mouse."
+var fuel_valve_on_howto  = "Push it in, or click with mouse.";
+var fuel_valve_off_howto = "Pull it out, or click with mouse.";
 
 var mixture_location = "It's the small red knob on the right, below the window.";
 var mixture_howto    = "Use your mouse to Push in for rich, or pull for lean. Or use control shift F3 for \
@@ -48,8 +48,8 @@ var tachometer_location    = "Leftmost gage on the instrument panel.  Needle mov
 // var tachometer_reading_tip = "You can hover your mouse over the gage to get a precise reading.";
 // var tachometer_mags_carb   = "The tachometer will only move a little bit."; // when togglig magnetos or carb heat.
 
-var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " \
-                          + tachometer_location;
+var throttle_location   = "The throttle is the small knob on the left window sill. The tachometer is " +
+                          tachometer_location;
 var throttle_howto      = "Use the throttle on your joystick, or ease it forward with the mouse, or hit F3 and F2 \
                            to adjust. Watch the RPMs on the tachometer, the " + tachometer_location;
 /*
@@ -74,6 +74,9 @@ var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, a
 var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
                             minus keys to move between the positions." + tachometer_reading_tip + tachometer_mags_carb;
 */
+var magnetos_toggle_howto = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
+                            minus keys to move between the positions.";
+
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning.";
 
@@ -99,7 +102,8 @@ var speed_howto      = "Pull back on the stick to pitch up and go slower; push f
 var altimiter_location        = "Second gage from right. It has a small black calibration knob to the lower left."; // alexa can't pronounce "guage"
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
                                  mouse scroll wheeel.";
-var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to adjust altitidue; use stick or elevator trim to adjust speed."
+var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to adjust \
+                                 altitidue; use stick or elevator trim to adjust speed.";
 
 var elevator_trim_location = "It's the crank on the left sidewall, near the front seat."; // alexa can't pronounce "guage"
 
@@ -123,7 +127,7 @@ select the channel \
 for local A-TIS to listen for weather and altimiter settings; adjust the altimiter again if necessary.";
 */
 
-var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark."
+var radio_off_howto    = "Click the Power switch to off, verify that the LCD display is dark.";
 
 var LAST_HAPPY_PATH_NODE = 8;
 
