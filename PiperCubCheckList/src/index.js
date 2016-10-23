@@ -52,7 +52,7 @@ to adjust. Watch the RPMs on the tachometer, the " + tachometer_location + tacho
 var fuel_primer_location = "It's the small silver knob at the far-right and near the bottom of the instrument panel. ";
 var fuel_primer_howto    = "Click it with the mouse to trigger one primer cycle.  The knob will move out then back in. ";
 
-var brakes_location = "There are small square metal pedals at the floor of the cockpit, next to the round bar rudder \
+var brakes_location = "There are small square metal pedals at the floor of the cockpit, below to the round bar rudder \
 pedals, but that's not really important.  Brakes are operated with keyboard, joystick, or actual rudder pedals. ";
 
 var brakes_howto    = "If you have rudder pedals, use your toes to press both pedals down.  You can also press and hold \
@@ -62,8 +62,8 @@ var magnetos_location     = "It's the big red lever above your left shoulder";
 var magnetos_howto        = "Use the mouse to turn it to both, or hold down M, and hit the plus key until the prop \
                             starts spinning. ";
 var magneto_test_howto    = "Use the mouse to turn it between position one and two, or hold down M and hit plus and \
-                            minus keys to move between the positions. " + tachometer_reading_tip +
-                            tachometer_mags_carb;
+                            minus keys to move between the positions. " + tachometer_mags_carb +
+                            tachometer_reading_tip;
 var magnetos_off_howto    = "Use the mouse to turn it to off, or hold down M, and hit the minus key until the prop \
                             stops spinning. ";
 
@@ -162,8 +162,9 @@ var nodes = [
   { "node": 12, "message": "Set Brakes on",             "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
-  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75rpm drop",
-                                                                  "yes": 15, "no": 1014, "how": 2014 }, // magnetos
+  { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75rpm drop. "
+                           + tachometer_reading_tip,
+                                                                   "yes": 15, "no": 1014, "how": 2014 }, // magnetos
 
   { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put it back",                                        "yes": 16, "no": 1015, "how": 2015 }, // carb heat
   { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",  "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
