@@ -9,10 +9,10 @@ mission compass pointer
 pause
 reset
 save
-select item one
-select item two
-select item three
-select item four
+item one
+item two
+item three
+item four
 decrease selection slightly
 decrease selection
 increase selection slightly
@@ -40,3 +40,72 @@ trim rudder right
 arm spoilers
 spoilers
 water rudder
+
+anti-detonation tank valve
+arm autothrottle
+engage autothrottle
+toga
+carb heat
+engine anti ice
+reheat afterburner for the concorde
+autostart engine
+engine
+fuel dump
+magnetos
+enrich mixture
+mixture to full
+mixture to cutoff
+quickly lean mixture
+nitrous tank valve
+decrease propeller RPM quickly
+propeller rpm to high
+increase propeller rpm
+propeller rpm to low
+cut throttle
+increase throttle quickly
+decrease throttle
+full throttle
+increase throttle
+
+attach jetway
+detach jetway
+apply left brake
+apply right brake
+brakes
+set parking brake
+clutch
+close cowl flaps
+open cowl flaps
+dme one ident
+doors
+end flight
+flying tips
+flying tips action trigger
+hoist arm
+
+raise the hoist cable
+lower the host cable
+attach the hoist hook
+release the hoist hook
+attach the sling hook
+release the sling hook
+
+manually extend the landing gear
+landing gear
+launch bar
+master battery
+alternator
+mouse flight control
+toggle pitch axis between normal and inverted
+pushback
+release droppable objects
+request a fuel truck
+apply the rotor brake
+rotor governor
+smoke system
+tail hook
+tail wheel
+takeoff assist
+trigger takeoff assist
+request tow plane
+release tow rope

@@ -51,6 +51,7 @@ RecipeIntent how do I turn off the {Item}
 RecipeIntent how do I turn off {Item}
 RecipeIntent how do I turn the {Item} off
 RecipeIntent how do I turn {Item} off
+
 RecipeIntent what key lets me turn off the {Item}
 RecipeIntent what key lets me turn off {Item}
 RecipeIntent what key lets me turn the {Item} off
@@ -75,3 +76,43 @@ RecipeIntent how do I raise the {Item}
 RecipeIntent how do I raise {Item}
 RecipeIntent what key lets me raise the {Item}
 RecipeIntent what key lets me raise {Item}
+
+RecipeIntent how do I open the {Item}
+RecipeIntent how do I open {Item}
+RecipeIntent what key lets me open the {Item}
+RecipeIntent what key lets me open {Item}
+
+RecipeIntent how do I close the {Item}
+RecipeIntent how do I close {Item}
+RecipeIntent what key lets me close the {Item}
+RecipeIntent what key lets me close {Item}
+
+RecipeIntent how do I start the {Item}
+RecipeIntent how do I start {Item}
+RecipeIntent what key lets me start the {Item}
+RecipeIntent what key lets me start {Item}
+
+RecipeIntent how do I stop the {Item}
+RecipeIntent how do I stop {Item}
+RecipeIntent what key lets me stop the {Item}
+RecipeIntent what key lets me stop {Item}
+
+RecipeIntent how do I lock the {Item}
+RecipeIntent how do I lock {Item}
+RecipeIntent what key lets me lock the {Item}
+RecipeIntent what key lets me lock {Item}
+
+RecipeIntent how do I unlock the {Item}
+RecipeIntent how do I unlock {Item}
+RecipeIntent what key lets me unlock the {Item}
+RecipeIntent what key lets me unlock {Item}
+
+RecipeIntent how do I arm the {Item}
+RecipeIntent how do I arm {Item}
+RecipeIntent what key lets me arm the {Item}
+RecipeIntent what key lets me arm {Item}
+
+RecipeIntent how do I disarm the {Item}
+RecipeIntent how do I disarm {Item}
+RecipeIntent what key lets me disarm the {Item}
+RecipeIntent what key lets me disarm {Item}
