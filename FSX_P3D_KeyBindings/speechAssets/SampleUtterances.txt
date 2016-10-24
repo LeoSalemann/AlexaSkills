@@ -11,7 +11,7 @@ RecipeIntent what key lets me select {Item}
 RecipeIntent how do I set the {Item}
 RecipeIntent how do I set {Item}
 RecipeIntent what key lets me set the {Item}
-RecipeIntent what key lets me set {Item}
+RecipeIntnt what key lets me set {Item}
 
 RecipeIntent how do I toggle the {Item}
 RecipeIntent how do I toggle {Item}
