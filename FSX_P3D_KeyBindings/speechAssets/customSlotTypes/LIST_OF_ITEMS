@@ -1,31 +1,31 @@
 atc menu
-Autorudder
-Capture a Screenshot
-Exit
-Exit Immediately
-Joystick
-Mission compass objective
-Mission compass pointer
-Pause
-Reset
-Save
-Select item one
-Select item two
-Select item three
-Select Item four
-Decrease selection slightly
-Decrease selection
-Increase selection slightly
-Increase selection
-Simulation Rate
-Slew mode
-Sound
-Trim Ailerons left
-Trim Ailerons right
-Bank left
-Bank right
-Trim Elevator up
-Trim Elevator down
+autorudder
+capture a screenshot
+exit
+exit immediately
+joystick
+mission compass objective
+mission compass pointer
+pause
+reset
+save
+select item one
+select item two
+select item three
+select item four
+decrease selection slightly
+decrease selection
+increase selection slightly
+increase selection
+simulation rate
+slew mode
+sound
+trim ailerons left
+trim ailerons right
+bank left
+bank right
+trim elevator up
+trim elevator down
 lower flaps fully
 lower flaps
 raise flaps fully
@@ -35,8 +35,8 @@ pitch down
 pitch up
 yaw left
 yaw right
-Trim rudder left
-Trim rudder right
-Arm Spoilers
-Spoilers
-Water rudder
+trim rudder left
+trim rudder right
+arm spoilers
+spoilers
+water rudder
