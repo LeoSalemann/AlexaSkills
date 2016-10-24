@@ -90,7 +90,7 @@ var altimiter_location        = "Second gage from right. It has a small black ca
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
                                  mouse scroll wheeel. ";
 var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to \
-                                 adjust altitidue; use stick or elevator trim to adjust speed. ";
+                                 adjust altitue; use stick or elevator trim to adjust speed. ";
 
 var pitch_nose_howto = "Push forward on the stick just enough to bring the nose level and get the tail off the \
                         ground. ";
@@ -106,11 +106,13 @@ go to your number pad and use 7 for nose down and 1 for nose up. ";
 var radio_location = "the radio is not visible in the cockpit, but it can be summoned with \
 shift 2 or menu path Views, Instrument Panel, Radio Stack. "; // alexa can't pronounce "guage"
 
+var atc_howto      = "Bring up the ATC Menu with Scroll Lock and the apostrophe key, or menu path Views, Air \
+Traffic Control. Once the ATC window is up, follow the prompts.  If A-TIS is available, tune to that first to \
+get latest weather conditions and recalibrate your altimiter. ";
+
 var radio_howto    = "Verify the radio is on by making sure you can see a frequency on the green LCD display. \
 Click the power switch if necessary. The radio can be tuned by hovering the mouse over frequency digits and \
-using the scroll wheel.  For best results, bring up the ATC Menu with Scroll Lock and the apostrophe key, or \
-menu path Views, Air Traffic Control. Once the ATC window is up, follow the prompts.  If A-TIS is available, \
-tune to that first to get latest weather conditions and recalibrate your altimiter. ";
+using the scroll wheel.  For best results, " + atc_howto;
 
 /*
  If your airort has a control tower \
@@ -254,7 +256,8 @@ var nodes = [
   // DESCENT - Happy Path
   { "node": 28, "message": "Cruise checklist complete.  Begin Descent checklist when ready to land.",
                                                                     "yes": 29, "no": 29, "how": 29 }, // begin descent
-  { "node": 29, "message": "Set altimiter prior to descent.",       "yes": 30, "no": 1029, "how": 2029 }, // SET Altimiter
+  { "node": 29, "message": atc_howto +
+                           "Set altimiter prior to descent.",       "yes": 30, "no": 1029, "how": 2029 }, // SET Altimiter
   { "node": 30, "message": "Verify that fuel valve is on.",         "yes": 31, "no": 1030, "how": 2030 }, // Fuel Valve, verify ON
   { "node": 31, "message": "Reduce throttle, and pitch for 75 mph", "yes": 32, "no": 1031, "how": 2031 }, // Throttle, reduce to ...
   { "node": 32, "message": "Turn on Carb heat",                     "yes": 33, "no": 1032, "how": 2032 }, // Carb Heat on
