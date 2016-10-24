@@ -2,7 +2,7 @@
 
 var Alexa = require('alexa-sdk');
 var APP_ID = undefined; //OPTIONAL: replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
-var SKILL_NAME = 'FSX Prepar3D Keyboard Bindings';
+var SKILL_NAME = 'FSX and Prepared Keyboard Bindings';
 var recipes = require('./recipes');
 
 exports.handler = function(event, context, callback) {
