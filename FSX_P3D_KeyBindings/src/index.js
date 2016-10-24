@@ -2,7 +2,7 @@
 
 var Alexa = require('alexa-sdk');
 var APP_ID = undefined; //OPTIONAL: replace with 'amzn1.echo-sdk-ams.app.[your-unique-value-here]';
-var SKILL_NAME = 'Minecraft Helper';
+var SKILL_NAME = 'FSX Prepar3D Keyboard Bindings';
 var recipes = require('./recipes');
 
 exports.handler = function(event, context, callback) {
@@ -16,8 +16,8 @@ var handlers = {
     //Use LaunchRequest, instead of NewSession if you want to use the one-shot model
     //Alexa, ask [my-skill-invocation-name] to (do something)...
     'NewSession': function () {
-        this.attributes['speechOutput'] = 'Welcome to ' + SKILL_NAME + '. You can ask a question like, what\'s the' +
-            ' recipe for a chest? ... Now, what can I help you with.';
+        this.attributes['speechOutput'] = 'Welcome to ' + SKILL_NAME + '. You can ask a question like, how do I' +
+            ' lower my flaps? ... Now, what can I help you with.';
         // If the user either does not reply to the welcome message or says something that is not
         // understood, they will be prompted again with this text.
         this.attributes['repromptSpeech'] = 'For instructions on what you can say, please say help me.';
@@ -41,9 +41,9 @@ var handlers = {
             var speechOutput = 'I\'m sorry, I currently do not know ';
             var repromptSpeech = 'What else can I help with?';
             if (itemName) {
-                speechOutput = 'the recipe for ' + itemName + '. ';
+                speechOutput = 'the key binding for ' + itemName + '. ';
             } else {
-                speechOutput = 'that recipe. ';
+                speechOutput = 'that key binding. ';
             }
             speechOutput += repromptSpeech;
 
@@ -54,9 +54,9 @@ var handlers = {
         }
     },
     'AMAZON.HelpIntent': function () {
-        this.attributes['speechOutput'] = 'You can ask questions such as, what\'s the recipe, or, you can say exit... ' +
+        this.attributes['speechOutput'] = 'You can ask questions such as, what\'s the key binding, or, you can say exit... ' +
             'Now, what can I help you with?';
-        this.attributes['repromptSpeech'] = 'You can say things like, what\'s the recipe, or you can say exit...' +
+        this.attributes['repromptSpeech'] = 'You can say things like, what\'s the key binding, or you can say exit...' +
             ' Now, what can I help you with?';
         this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
     },

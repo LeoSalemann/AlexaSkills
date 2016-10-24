@@ -1,6 +1,6 @@
 module.exports = {
-    "snow golem": "A snow golem can be created by placing a pumpkin on top of  two snow blocks on the ground.",
-    "pillar quartz block": "A pillar of quartz can be obtained by placing a block of quartz on top of a block of quartz in mine craft.",
+    "lower flaps": "F7 ",
+    "raise flaps": "F6 ",
     "firework rocket": "A firework rocket can be crafted by placing a firework star in the left middle square, a piece of paper in the center square, and gunpowder in the right middle square in a crafting table. Similar to a firework star, a firework rocket can have more gunpowder added in the bottom row to increase the duration of a rocket.",
     "rabbit stew": "Rabbit stew can be crafted by placing cooked rabbit in the top middle square, a carrot in the middle left square, a baked potato in the center square, any type of mushroom in the middle right square, and a bowl in the bottom middle square.",
     "cauldron": "A cauldron can be created by placing iron ingots in all squares but the top middle and very center squares in a crafting table.",
