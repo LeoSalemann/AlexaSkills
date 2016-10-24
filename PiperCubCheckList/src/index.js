@@ -90,7 +90,7 @@ var altimiter_location        = "Second gage from right. It has a small black ca
 var altimiter_howto_calibrate = "hit the B key to reset.  Or click the small black calibration knob, then use the \
                                  mouse scroll wheeel. ";
 var altimiter_howto_watch     = "Level off when you're within 50 feet of your target altitude. Use throttle to \
-                                 adjust altitue; use stick or elevator trim to adjust speed. ";
+                                 adjust altitude; use stick or elevator trim to adjust speed. ";
 
 var pitch_nose_howto = "Push forward on the stick just enough to bring the nose level and get the tail off the \
                         ground. ";
@@ -167,17 +167,18 @@ var nodes = [
   { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator bead should be about 3/4 of the way \
      to the rear of the slot, toward the UP position. The elevator trim crank should be level and pointing forward.",
                                                         "yes": 12, "no": 1011, "how": 2011 }, // trim
+  // this is where you would taxi to the run=up area.
   { "node": 12, "message": "Set Brakes on",             "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
   { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75 RPM drop. "
-                           + tachometer_reading_tip,
-                                                                   "yes": 15, "no": 1014, "how": 2014 }, // magnetos
+                           + tachometer_reading_tip,               "yes": 15, "no": 1014, "how": 2014 }, // magnetos
 
   { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put it back",                                        "yes": 16, "no": 1015, "how": 2015 }, // carb heat
   { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",  "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
   { "node": 17, "message": "Throttle back to 1000 RPM",            "yes": 18, "no": 1017, "how": 2017 }, // throttle to 1000 rpm
   { "node": 18, "message": "Check radio operation",                "yes": 19, "no": 1018, "how": 2018 }, // radio
+  // this is where you would get taxi clearance, and start taxiing to hold-short area.
 
   // TAXI & RUN-UP - Where's that? Questions
   { "node": 1009, "message": stick_and_rudder_location, "yes": 10, "how": 2009 }, // controls
