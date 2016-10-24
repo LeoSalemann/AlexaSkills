@@ -1,6 +1,6 @@
-RecipeIntent how can I build a {Item}
-RecipeIntent how can I build an {Item}
-RecipeIntent how can I build {Item}
+RecipeIntent how can I {Item}
+RecipeIntent what is the key binding for {Item}
+RecipeIntent what key lets me {Item}
 RecipeIntent how can I craft a {Item}
 RecipeIntent how can I craft an {Item}
 RecipeIntent how can I craft {Item}
