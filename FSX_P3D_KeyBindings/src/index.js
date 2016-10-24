@@ -41,7 +41,7 @@ var handlers = {
             var speechOutput = 'I\'m sorry, I currently do not know ';
             var repromptSpeech = 'What else can I help with?';
             if (itemName) {
-                speechOutput = 'the key binding for ' + itemName + '. ';
+                speechOutput = speechOutput + 'the key binding for ' + itemName + '. ';
             } else {
                 speechOutput = 'that key binding. ';
             }
