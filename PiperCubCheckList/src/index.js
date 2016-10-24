@@ -290,8 +290,8 @@ var nodes = [
   { "node": 1034, "message": throttle_location,                  "yes": 35, "how": 2034 }, // Throttle IDLE
 
   // LANDING - How do I do that? Question
-  { "node": 2033, "message": speed_howto,    "yes": 31, "no": 1031 }, // Airspeed 50-60 MPH
-  { "node": 2034, "message": throttle_howto, "yes": 34, "no":  1034 }, // Throttle IDLE
+  { "node": 2033, "message": speed_howto,    "yes": 34, "no": 1031 }, // Airspeed 50-60 MPH
+  { "node": 2034, "message": throttle_howto, "yes": 35, "no": 1034 }, // Throttle IDLE
 
 
   // ENGINE SHUT-DOWN - Happy Path
