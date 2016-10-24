@@ -297,9 +297,9 @@ var nodes = [
   // ENGINE SHUT-DOWN - Happy Path
   { "node": 35, "message": "Set throttle to idle after you  touch down",
                                                             "yes": 36, "no": 1035, "how": 2035 }, // Throttle IDLE
-  { "node": 36, "message": "Taxi to your parking space, \
-                           then Pull mixture to cutoff",    "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
-  { "node": 37, "message": "Set magnestos to off",          "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
+  { "node": 36, "message": "Taxi to your parking space, then Pull mixture to cutoff",
+                                                            "yes": 37, "no": 1036, "how": 2036 }, // Mixture - CUTOFF
+  { "node": 37, "message": "Set magnetos to off",          "yes": 38, "no": 1037, "how": 2037 }, // Magnetos - OFF
   { "node": 38, "message": "Set fuel valve to off",         "yes": 39, "no": 1038, "how": 2038 }, // Fuel Valve - off
   { "node": 39, "message": "Turn radio off",                "yes": 40, "no": 1039, "how": 2039 }, // Radio off
   { "node": 40, "message": "Set elevator trim for takeoff", "yes": 41, "no": 1040, "how": 2040 }, // Trim - set for takeoff
