@@ -128,15 +128,16 @@ var LAST_HAPPY_PATH_NODE = 8;
 
 var nodes = [
   // ENGINE START - Happy Path
-  { "node": 1, "message": "Begin Engine start checklist.  Turn on the \
-                           fuel valve",                                   "yes": 2, "no": 1001, "how": 2001 }, // fuel valve
-  { "node": 2, "message": "Set the fuel mixture to Rich",                 "yes": 3, "no": 1002, "how": 2002 }, // mixture
-  { "node": 3, "message": "Turn the carb heat off",                       "yes": 4, "no": 1003, "how": 2003 }, // carb heat
-  { "node": 4, "message": "Open the Throttle just a little bit",          "yes": 5, "no": 1004, "how": 2004 }, // throttle  { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
-  { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
-  { "node": 6, "message": "Set the brakes",                               "yes": 7, "no": 1006, "how": 2006 }, // brakes
-  { "node": 7, "message": "Set the Magneto Switch to On",                 "yes": 8, "no": 1007, "how": 2007 }, // magneto
-  { "node": 8, "message": "Verify Oil Presure is reading at least 10psi", "yes": 9, "no": 1008, "how": 2008 }, // oil pressue
+  { "node": 1, "message": "Begin Engine start checklist.  Turn on the  fuel valve",
+                                                                 "yes": 2, "no": 1001, "how": 2001 }, // fuel valve
+  { "node": 2, "message": "Set the fuel mixture to Rich",        "yes": 3, "no": 1002, "how": 2002 }, // mixture
+  { "node": 3, "message": "Turn the carb heat off",              "yes": 4, "no": 1003, "how": 2003 }, // carb heat
+  { "node": 4, "message": "Open the Throttle just a little bit", "yes": 5, "no": 1004, "how": 2004 }, // throttle  { "node": 5, "message": "Prime the fuel system",                        "yes": 6, "no": 1005, "how": 2005 }, // prime
+  { "node": 5, "message": "Prime the fuel system",               "yes": 6, "no": 1005, "how": 2005 }, // prime
+  { "node": 6, "message": "Set the brakes",                      "yes": 7, "no": 1006, "how": 2006 }, // brakes
+  { "node": 7, "message": "Set the Magneto Switch to On",        "yes": 8, "no": 1007, "how": 2007 }, // magneto
+  { "node": 8, "message": "Verify Oil Presure is reading at least 10psi",
+                                                                 "yes": 9, "no": 1008, "how": 2008 }, // oil pressue
 
   // ENGINE START - Where's that? Questions
   { "node": 1001, "message": fuel_valve_location,   "yes": 2, "how": 2001 }, // fuel valve
@@ -168,8 +169,8 @@ var nodes = [
      to the rear of the slot, toward the UP position. The elevator trim crank should be level and pointing forward.",
                                                         "yes": 12, "no": 1011, "how": 2011 }, // trim
 
-  { "node": 12, "message": "Taxi to your airport's run-up area if applicable, cofirm operation of compass and \
-  turn indicator while turning. Set Brakes on when you arrive.",
+  { "node": 12, "message": "Taxi to your airport's run-up area if applicable.  Confirm operation of compass and \
+     turn indicator while turning. Once you arrive, Set Brakes. ",
                                                         "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
@@ -273,10 +274,10 @@ var nodes = [
   { "node": 1032, "message": carb_heat_location,  "yes": 33, "how": 2032 }, // Carb Heat on
 
   // DESCENT - How do I do that? Question
-  { "node": 2029, "message": altimiter_howto_calibrate, "yes": 30, "how": 1029 }, // SET Altimeter
-  { "node": 2030, "message": fuel_valve_on_howto,       "yes": 31, "how": 1030 }, // Fuel Valve, verify ON
-  { "node": 2031, "message": speed_howto,               "yes": 32, "how": 1031 }, // Throttle, reduce to ...
-  { "node": 2032, "message": carb_heat_OnOff_howto,     "yes": 33, "how": 1032 }, // Carb Heat on
+  { "node": 2029, "message": altimiter_howto_calibrate, "yes": 30, "no": 1029 }, // SET Altimeter
+  { "node": 2030, "message": fuel_valve_on_howto,       "yes": 31, "no": 1030 }, // Fuel Valve, verify ON
+  { "node": 2031, "message": speed_howto,               "yes": 32, "no": 1031 }, // Throttle, reduce to ...
+  { "node": 2032, "message": carb_heat_OnOff_howto,     "yes": 33, "no": 1032 }, // Carb Heat on
 
   // LANDING - Happy Path
   { "node": 33, "message": "Descent checklist complete. Adjust throttle \
@@ -289,7 +290,7 @@ var nodes = [
   { "node": 1034, "message": throttle_location,                  "yes": 35, "how": 2034 }, // Throttle IDLE
 
   // LANDING - How do I do that? Question
-  { "node": 2033, "message": speed_howto,    "yes": 31, "how": 1031 }, // Airspeed 50-60 MPH
+  { "node": 2033, "message": speed_howto,    "yes": 31, "no": 1031 }, // Airspeed 50-60 MPH
   { "node": 2034, "message": throttle_howto, "yes": 34, "no":  1034 }, // Throttle IDLE
 
 
