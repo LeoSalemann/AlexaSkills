@@ -1,4 +1,5 @@
 open piper cub checklist
+help
 yes
 
 wheres that
