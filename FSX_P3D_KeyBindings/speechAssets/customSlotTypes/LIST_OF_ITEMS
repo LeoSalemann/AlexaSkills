@@ -41,14 +41,15 @@ arm spoilers
 spoilers
 water rudder
 
-anti-detonation tank valve
+anti detonation tank valve
 arm autothrottle
 engage autothrottle
 toga
 carb heat
 engine anti ice
-reheat afterburner for the concorde
+reheat afterburners for the concorde
 autostart engine
+start the engine
 engine
 fuel dump
 magnetos
@@ -72,7 +73,7 @@ detach jetway
 apply left brake
 apply right brake
 brakes
-set parking brake
+set the parking brake
 clutch
 close cowl flaps
 open cowl flaps
@@ -84,7 +85,7 @@ flying tips action trigger
 hoist arm
 
 raise the hoist cable
-lower the host cable
+lower the hoist cable
 attach the hoist hook
 release the hoist hook
 attach the sling hook
@@ -107,5 +108,5 @@ tail hook
 tail wheel
 takeoff assist
 trigger takeoff assist
-request tow plane
-release tow rope
+request a tow plane
+release the tow rope
