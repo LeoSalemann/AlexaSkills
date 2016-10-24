@@ -167,18 +167,20 @@ var nodes = [
   { "node": 11, "message": "Set Elevator Trim for takeoff. The red indicator bead should be about 3/4 of the way \
      to the rear of the slot, toward the UP position. The elevator trim crank should be level and pointing forward.",
                                                         "yes": 12, "no": 1011, "how": 2011 }, // trim
-  // this is where you would taxi to the run=up area.
-  { "node": 12, "message": "Set Brakes on",             "yes": 13, "no": 1012, "how": 2006 }, // brakes
+
+  { "node": 12, "message": "Taxi to your airport's run-up area if applicable, cofirm operation of compass and \
+  turn indicator while turning. Set Brakes on when you arrive.",
+                                                        "yes": 13, "no": 1012, "how": 2006 }, // brakes
   { "node": 13, "message": "Throttle up to 1500 RPM",   "yes": 14, "no": 1013, "how": 2013 }, // throttle to 1500rpm
 
   { "node": 14, "message": "Switch Magneto to Right, then Left, then Both.  Watch for 75 RPM drop. "
-                           + tachometer_reading_tip,               "yes": 15, "no": 1014, "how": 2014 }, // magnetos
+                           + tachometer_reading_tip,    "yes": 15, "no": 1014, "how": 2014 }, // magnetos
 
   { "node": 15, "message": "Turn Carb Heat On, check for rpm drop, then put it back",                                        "yes": 16, "no": 1015, "how": 2015 }, // carb heat
   { "node": 16, "message": "Check Oil Pressure for 30 to 45 PSI",  "yes": 17, "no": 1016, "how": 2016 }, // oil pressure
   { "node": 17, "message": "Throttle back to 1000 RPM",            "yes": 18, "no": 1017, "how": 2017 }, // throttle to 1000 rpm
-  { "node": 18, "message": "Check radio operation",                "yes": 19, "no": 1018, "how": 2018 }, // radio
-  // this is where you would get taxi clearance, and start taxiing to hold-short area.
+  { "node": 18, "message": "Check radio operation. Taxi to hold-short area. Set brakes when you arrive.",
+                                                                   "yes": 19, "no": 1018, "how": 2018 }, // radio
 
   // TAXI & RUN-UP - Where's that? Questions
   { "node": 1009, "message": stick_and_rudder_location, "yes": 10, "how": 2009 }, // controls
@@ -204,10 +206,10 @@ var nodes = [
   { "node": 2017, "message": throttle_howto,            "yes": 18, "no": 1017 }, // throttle
   { "node": 2018, "message": radio_howto,               "yes": 19, "no": 1018 }, // tbd
 
-
 // TAKEOFF & CLIMB - Happy Path
-  { "node": 19, "message": "Taxi and run-up checklist complete. Begin takeoff and climb checklist. \
-                 Release brakes.",                               "yes": 20, "no": 1019, "how": 2019 }, // brakes
+  { "node": 19, "message": "Taxi and run-up checklist complete. Wait for clearance to enter \
+  runway, then Begin takeoff and climb checklist by releasing brakes.",
+                                                                 "yes": 20, "no": 1019, "how": 2019 }, // brakes
   { "node": 20, "message": "Set throttle to full",               "yes": 21, "no": 1020, "how": 2020 }, // throttle
   { "node": 21, "message": "Pitch the nose down.",               "yes": 22, "no": 1021, "how": 2021 }, // pitch nose
 
@@ -264,11 +266,11 @@ var nodes = [
   { "node": 32, "message": "Turn on Carb heat",                     "yes": 33, "no": 1032, "how": 2032 }, // Carb Heat on
 
   // DESCENT - Where's that? Questions
-  { "node": 1029, "message": altimiter_location,  "yes": 30, "no": 2029 }, // SET Altimeter
-  { "node": 1030, "message": fuel_valve_location, "yes": 31, "no": 2030 }, // Fuel Valve, verify ON
+  { "node": 1029, "message": altimiter_location,  "yes": 30, "how": 2029 }, // SET Altimeter
+  { "node": 1030, "message": fuel_valve_location, "yes": 31, "how": 2030 }, // Fuel Valve, verify ON
   { "node": 1031, "message": throttle_location +  stick_location,
-                                                  "yes": 32, "no": 2031 }, // Throttle, reduce to ...
-  { "node": 1032, "message": carb_heat_location,  "yes": 33, "no": 2032 }, // Carb Heat on
+                                                  "yes": 32, "how": 2031 }, // Throttle, reduce to ...
+  { "node": 1032, "message": carb_heat_location,  "yes": 33, "how": 2032 }, // Carb Heat on
 
   // DESCENT - How do I do that? Question
   { "node": 2029, "message": altimiter_howto_calibrate, "yes": 30, "how": 1029 }, // SET Altimeter
@@ -283,8 +285,8 @@ var nodes = [
 
 
   // LANDING - Where's that? Questions
-  { "node": 1033, "message": throttle_location + stick_location, "yes": 34, "no": 2033 }, // Airspeed 50-60 MPH
-  { "node": 1034, "message": throttle_location,                  "yes": 35, "no": 2034 }, // Throttle IDLE
+  { "node": 1033, "message": throttle_location + stick_location, "yes": 34, "how": 2033 }, // Airspeed 50-60 MPH
+  { "node": 1034, "message": throttle_location,                  "yes": 35, "how": 2034 }, // Throttle IDLE
 
   // LANDING - How do I do that? Question
   { "node": 2033, "message": speed_howto,    "yes": 31, "how": 1031 }, // Airspeed 50-60 MPH
@@ -302,12 +304,12 @@ var nodes = [
   { "node": 40, "message": "Set elevator trim for takeoff", "yes": 41, "no": 1040, "how": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - Where's that? Questions
-  { "node": 1035, "message": throttle_location,      "yes": 36, "no": 2035 }, // Throttle - IDLE
-  { "node": 1036, "message": mixture_location,       "yes": 37, "no": 2036 }, // Mixture - CUTOFF
-  { "node": 1037, "message": magnetos_location,      "yes": 38, "no": 2037 }, // Magnetos - OFF
-  { "node": 1038, "message": fuel_valve_location,    "yes": 39, "no": 2038 }, // Fuel Valve - off
-  { "node": 1039, "message": radio_location,         "yes": 40, "no": 2039 }, // Radio off
-  { "node": 1040, "message": elevator_trim_location, "yes": 41, "no": 2040 }, // Trim - set for takeoff
+  { "node": 1035, "message": throttle_location,      "yes": 36, "how": 2035 }, // Throttle - IDLE
+  { "node": 1036, "message": mixture_location,       "yes": 37, "how": 2036 }, // Mixture - CUTOFF
+  { "node": 1037, "message": magnetos_location,      "yes": 38, "how": 2037 }, // Magnetos - OFF
+  { "node": 1038, "message": fuel_valve_location,    "yes": 39, "how": 2038 }, // Fuel Valve - off
+  { "node": 1039, "message": radio_location,         "yes": 40, "how": 2039 }, // Radio off
+  { "node": 1040, "message": elevator_trim_location, "yes": 41, "how": 2040 }, // Trim - set for takeoff
 
   // ENGINE SHUT-DOWN - How do I do that? Question
   { "node": 2035, "message": throttle_howto,       "yes": 36, "no":  1035 }, // Throttle - IDLE
