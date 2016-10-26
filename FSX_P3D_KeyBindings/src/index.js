@@ -54,9 +54,9 @@ var handlers = {
         }
     },
     'AMAZON.HelpIntent': function () {
-        this.attributes['speechOutput'] = 'You can ask questions such as, what\'s the key binding, or, you can say exit... ' +
+        this.attributes['speechOutput'] = 'You can ask questions such as, what\'s the key binding for lowering flaps, or, you can say exit... ' +
             'Now, what can I help you with?';
-        this.attributes['repromptSpeech'] = 'You can say things like, what\'s the key binding, or you can say exit...' +
+        this.attributes['repromptSpeech'] = 'You can say things like, what\'s the key binding for lowering flaps, or you can say exit...' +
             ' Now, what can I help you with?';
         this.emit(':ask', this.attributes['speechOutput'], this.attributes['repromptSpeech'])
     },
