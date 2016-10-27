@@ -16,8 +16,8 @@ var handlers = {
     //Use LaunchRequest, instead of NewSession if you want to use the one-shot model
     //Alexa, ask [my-skill-invocation-name] to (do something)...
     'NewSession': function () {
-        this.attributes['speechOutput'] = 'Welcome to ' + SKILL_NAME + '. You can ask a question like, how do I' +
-            ' lower my flaps? ... Now, what can I help you with.';
+        this.attributes['speechOutput'] = 'Welcome to ' + SKILL_NAME + '. You can ask a question like,' +
+            'Now, what can I help you with?';
         // If the user either does not reply to the welcome message or says something that is not
         // understood, they will be prompted again with this text.
         this.attributes['repromptSpeech'] = 'For instructions on what you can say, please say help me.';
@@ -34,13 +34,8 @@ var handlers = {
         var recipe = recipes[itemName];
 
         if (recipe) {
-            this.attributes['speechOutput'] = recipe + " ... What else can I help with?";
             this.attributes['repromptSpeech'] = 'Try saying repeat.';
             this.emit(':askWithCard', this.attributes['speechOutput'] , this.attributes['repromptSpeech'], cardTitle, recipe);
-
-//            var speechOutput = recipe + ' What else can I help with?';
-//            this.emit(':tellWithCard', speechOutput, SKILL_NAME, randomFact)
-
         } else {
             var speechOutput = 'I\'m sorry, I currently do not know ';
             var repromptSpeech = 'What else can I help with?';
