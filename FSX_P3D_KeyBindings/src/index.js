@@ -30,20 +30,24 @@ var handlers = {
             itemName = itemSlot.value.toLowerCase();
         }
 
-        var cardTitle = SKILL_NAME + ' - Recipe for ' + itemName;
+        var cardTitle = SKILL_NAME;
         var recipe = recipes[itemName];
 
         if (recipe) {
-            this.attributes['speechOutput'] = recipe;
+            this.attributes['speechOutput'] = recipe + " ... What else can I help with?";
             this.attributes['repromptSpeech'] = 'Try saying repeat.';
-            this.emit(':askWithCard', recipe, this.attributes['repromptSpeech'], cardTitle, recipe);
+            this.emit(':askWithCard', this.attributes['speechOutput'] , this.attributes['repromptSpeech'], cardTitle, recipe);
+
+//            var speechOutput = recipe + ' What else can I help with?';
+//            this.emit(':tellWithCard', speechOutput, SKILL_NAME, randomFact)
+
         } else {
             var speechOutput = 'I\'m sorry, I currently do not know ';
             var repromptSpeech = 'What else can I help with?';
             if (itemName) {
                 speechOutput = speechOutput + 'the key binding for ' + itemName + '. ';
             } else {
-                speechOutput = 'that key binding. ';
+                speechOutput += 'that key binding. ';
             }
             speechOutput += repromptSpeech;
 
